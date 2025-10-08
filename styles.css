@@ -59,6 +59,17 @@ body {
     align-items: center;
 }
 
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.nav-logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
 .nav-logo h2 {
     color: var(--primary-color);
     font-weight: 700;
@@ -506,6 +517,178 @@ section {
     font-size: 0.9rem;
 }
 
+/* Sección Reseñas */
+.reviews {
+    background: var(--bg-light);
+}
+
+.reviews-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.google-reviews-widget {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.google-reviews-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.google-logo {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.google-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.google-rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.google-rating .stars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.google-rating .stars i {
+    color: #fbbf24;
+    font-size: 1.2rem;
+}
+
+.rating-text {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+
+.review-card {
+    background: var(--bg-light);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+}
+
+.reviewer-details h4 {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.review-stars {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.review-stars i {
+    color: #fbbf24;
+    font-size: 0.9rem;
+}
+
+.review-date {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.review-text {
+    color: var(--text-light);
+    line-height: 1.6;
+    font-style: italic;
+    margin: 0;
+}
+
+.google-reviews-footer {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.google-reviews-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #4285f4 0%, #34a853 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.google-reviews-footer .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.google-reviews-footer .btn i {
+    font-size: 1.1rem;
+}
+
 /* Sección Ubicación */
 .location {
     background: var(--bg-white);
@@ -551,7 +734,7 @@ section {
 }
 
 .location-map {
-    height: 400px;
+    height: 450px;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -559,6 +742,7 @@ section {
 
 .map-placeholder {
     height: 100%;
+    width: 100%;
     background: var(--gradient);
     display: flex;
     flex-direction: column;
@@ -566,6 +750,13 @@ section {
     justify-content: center;
     color: white;
     text-align: center;
+}
+
+.map-placeholder iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
 }
 
 .map-placeholder i {
@@ -708,6 +899,20 @@ section {
     .location-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .google-reviews-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+    
+    .google-rating {
+        justify-content: center;
     }
     
     .vehicles-grid {
