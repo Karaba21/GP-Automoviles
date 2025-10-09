@@ -402,3 +402,55 @@ window.GPAutomoviles = {
     loadVehiclesFromCRM,
     renderVehicles
 };
+
+
+// Mostrar autos
+const HUBSPOT_TOKEN = "pat-xxxxxxxxxxxxxxxx"; // ⚠️ solo para pruebas locales
+const container = document.getElementById("vehicles-container");
+
+async function fetchVehicles() {
+  const url =
+    "https://api.hubapi.com/crm/v3/objects/products?limit=100&properties=name,price,description,image_url,brand,model,year,kilometers,transmission,color";
+
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${HUBSPOT_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    container.innerHTML = "<p>Error al cargar los autos.</p>";
+    return [];
+  }
+
+  const data = await res.json();
+  return data.results.map((r) => r.properties);
+}
+
+async function renderVehicles() {
+  const vehicles = await fetchVehicles();
+
+  if (!vehicles.length) {
+    container.innerHTML = "<p>No hay autos publicados actualmente.</p>";
+    return;
+  }
+
+  container.innerHTML = vehicles
+    .map(
+      (v) => `
+      <div class="card">
+        <img src="${v.image_url || 'assets/logo.jpeg'}" alt="${v.name}" />
+        <h2>${v.name}</h2>
+        <p>${v.brand || ''} ${v.model || ''} ${v.year ? `• ${v.year}` : ''}</p>
+        <p>${v.kilometers ? `${v.kilometers} km` : ''}</p>
+        <p>${v.transmission || ''}</p>
+        <p class="price">$${Number(v.price || 0).toLocaleString()}</p>
+        <p>${v.description || ''}</p>
+      </div>
+    `
+    )
+    .join("");
+}
+
+renderVehicles();
