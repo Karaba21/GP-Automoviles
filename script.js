@@ -670,6 +670,100 @@ async function showVehicleDetails(vehicleId) {
   }
 }
 
+// Función para generar mensaje de WhatsApp con datos del formulario
+function generateWhatsAppMessage() {
+  const form = document.getElementById('vehicleQuoteForm');
+  const formData = new FormData(form);
+  
+  // Validar campos requeridos
+  const marca = formData.get('marca')?.trim();
+  const modelo = formData.get('modelo')?.trim();
+  const anio = formData.get('anio')?.trim();
+  const kilometraje = formData.get('kilometraje')?.trim();
+  
+  if (!marca || !modelo || !anio || !kilometraje) {
+    showNotification('Por favor completa todos los campos obligatorios', 'error');
+    return;
+  }
+  
+  // Construir mensaje
+  let mensaje = ` *COTIZACIÓN DE VEHÍCULO* \n\n`;
+  mensaje += ` *Información del Vehículo:*\n`;
+  mensaje += `• Marca: ${marca}\n`;
+  mensaje += `• Modelo: ${modelo}\n`;
+  mensaje += `• Año: ${anio}\n`;
+  mensaje += `• Kilometraje: ${Number(kilometraje).toLocaleString()} km\n\n`;
+  
+  const observaciones = formData.get('observaciones')?.trim();
+  if (observaciones) {
+    mensaje += `📝 *Observaciones:*\n${observaciones}\n\n`;
+  }
+  
+  mensaje += `¡Hola! Me interesa cotizar mi vehículo. ¿Podrían ayudarme con una evaluación?`;
+  
+  // Número de WhatsApp (usar el número real de GP Automóviles)
+  const whatsappNumber = '59899493618';
+  const encodedMessage = encodeURIComponent(mensaje);
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  
+  // Abrir WhatsApp
+  window.open(whatsappUrl, '_blank');
+  
+  // Mostrar notificación de éxito
+  showNotification('Redirigiendo a WhatsApp...', 'success');
+  
+  // Limpiar formulario después de un breve delay
+  setTimeout(() => {
+    form.reset();
+  }, 2000);
+}
+
+// Función para validar el formulario de cotización
+function validateQuoteForm() {
+  const form = document.getElementById('vehicleQuoteForm');
+  const requiredFields = ['marca', 'modelo', 'anio', 'kilometraje'];
+  let isValid = true;
+  
+  requiredFields.forEach(fieldName => {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    if (!field.value.trim()) {
+      field.style.borderColor = '#ef4444';
+      isValid = false;
+    } else {
+      field.style.borderColor = '#d1d5db';
+    }
+  });
+  
+  return isValid;
+}
+
+// Agregar validación en tiempo real
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('vehicleQuoteForm');
+  if (form) {
+    const inputs = form.querySelectorAll('input[required], textarea');
+    inputs.forEach(input => {
+      // Marcar el campo como "tocado" cuando el usuario interactúe con él
+      input.addEventListener('blur', () => {
+        input.classList.add('touched');
+        if (input.hasAttribute('required') && !input.value.trim()) {
+          input.style.borderColor = '#ef4444';
+        } else {
+          input.style.borderColor = '#d1d5db';
+        }
+      });
+      
+      input.addEventListener('input', () => {
+        if (input.value.trim()) {
+          input.style.borderColor = '#d1d5db';
+        } else if (input.classList.contains('touched')) {
+          input.style.borderColor = '#ef4444';
+        }
+      });
+    });
+  }
+});
+
 // Cargar autos cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM cargado, iniciando carga de vehículos...');

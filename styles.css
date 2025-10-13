@@ -753,7 +753,7 @@ section {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
-.form-group input:invalid {
+.form-group input:invalid:not(:placeholder-shown) {
     border-color: #ef4444;
 }
 
@@ -761,6 +761,96 @@ section {
     resize: vertical;
     min-height: 100px;
     font-family: inherit;
+}
+
+.form-group input[type="file"] {
+    padding: 8px 12px;
+    border: 2px dashed var(--border-color);
+    background: var(--bg-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-group input[type="file"]:hover {
+    border-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.form-group input[type="file"]:focus {
+    border-color: var(--primary-color);
+    background: white;
+    border-style: solid;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.quote-form-container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.quote-guide {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+}
+
+.quote-guide h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.guide-image {
+    margin-bottom: 1.5rem;
+}
+
+.guide-text {
+    color: var(--text-dark);
+}
+
+.guide-text p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.guide-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.guide-text li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.guide-text li:last-child {
+    border-bottom: none;
+}
+
+.guide-text li strong {
+    color: var(--primary-color);
+    min-width: 80px;
 }
 
 .form-actions {

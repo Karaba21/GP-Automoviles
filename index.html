@@ -154,46 +154,70 @@
                 <p>Obtén una cotización personalizada para el vehículo de tus sueños</p>
             </div>
             
-            
-                <div class="quote-benefits">
-                    <h3>¿Por qué cotizar con nosotros?</h3>
-                    <div class="benefits-grid">
-                        <div class="benefit-item">
-                            <i class="fas fa-clock"></i>
-                            <h4>Respuesta Rápida</h4>
-                            <p>Te contactamos en menos de 24 horas</p>
+            <div class="quote-content">
+                <div class="quote-form-container">
+                    <h3>Información del Vehículo</h3>
+                    <form class="quote-form" id="vehicleQuoteForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="marca">Marca *</label>
+                                <input type="text" id="marca" name="marca" required placeholder="Ej: Toyota, Ford, Chevrolet...">
+                            </div>
+                            <div class="form-group">
+                                <label for="modelo">Modelo *</label>
+                                <input type="text" id="modelo" name="modelo" required placeholder="Ej: Corolla, Focus, Cruze...">
+                            </div>
                         </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-percentage"></i>
-                            <h4>Mejores Precios</h4>
-                            <p>Precios competitivos y sin sorpresas</p>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="anio">Año *</label>
+                                <input type="number" id="anio" name="anio" required placeholder="Ej: 2020" min="1990" max="2025">
+                            </div>
+                            <div class="form-group">
+                                <label for="kilometraje">Kilometraje *</label>
+                                <input type="number" id="kilometraje" name="kilometraje" required placeholder="Ej: 50000" min="0">
+                            </div>
                         </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-handshake"></i>
-                            <h4>Asesoría Personalizada</h4>
-                            <p>Un asesor dedicado para tu compra</p>
+                        
+                        
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones Adicionales</label>
+                            <textarea id="observaciones" name="observaciones" placeholder="Cuéntanos más detalles sobre el estado del vehículo, accesorios, etc."></textarea>
                         </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <h4>Garantía Incluida</h4>
-                            <p>Todos nuestros vehículos incluyen garantía</p>
-                        </div>
-                    </div>
-                    
-                    <div class="quote-contact">
-                        <h4>¿Prefieres hablar directamente?</h4>
-                        <div class="contact-options">
-                            <a href="tel:+5712345678" class="contact-btn">
-                                <i class="fas fa-phone"></i>
-                                Llamar Ahora
-                            </a>
-                            <a href="https://wa.me/573001234567" class="contact-btn whatsapp" target="_blank">
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary" onclick="generateWhatsAppMessage()">
                                 <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </a>
+                                Enviar por WhatsApp
+                            </button>
                         </div>
+                    </form>
+                </div>
+                
+                <div class="quote-guide">
+                    <h3>Fotos Necesarias para Tasación</h3>
+                    <div class="guide-image">
+                        <img src="assets/cotizacion.jpeg" alt="Guía de fotos necesarias para tasación de vehículos" style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow);">
+                    </div>
+                    <div class="guide-text">
+                        <p><strong>Para una tasación precisa, necesitamos estas 7 fotos:</strong></p>
+                        <ul>
+                            <li><strong>1. Frente</strong> - Vista frontal completa</li>
+                            <li><strong>2. Atrás</strong> - Vista trasera completa</li>
+                            <li><strong>3. Lateral Derecho</strong> - Perfil derecho del vehículo</li>
+                            <li><strong>4. Lateral Izquierdo</strong> - Perfil izquierdo del vehículo</li>
+                            <li><strong>5. Tablero</strong> - Interior del vehículo (tablero)</li>
+                            <li><strong>6. Butaca Delantera</strong> - Asientos delanteros</li>
+                            <li><strong>7. Motor</strong> - Compartimiento del motor</li>
+                        </ul>
+                        <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
+                            <i class="fas fa-lightbulb"></i> 
+                            <strong>Tip:</strong> Asegúrate de que las fotos estén bien iluminadas y muestren claramente el estado del vehículo.
+                        </p>
                     </div>
                 </div>
+                
             </div>
         </div>
     </section>
