@@ -42,29 +42,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Filtros de vehículos
-const filterButtons = document.querySelectorAll('.filter-btn');
-const vehicleCards = document.querySelectorAll('.vehicle-card');
-
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remover clase active de todos los botones
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Agregar clase active al botón clickeado
-        button.classList.add('active');
-        
-        const filter = button.getAttribute('data-filter');
-        
-        vehicleCards.forEach(card => {
-            if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                card.style.display = 'block';
-                card.style.animation = 'fadeIn 0.5s ease-in';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    });
-});
 
 // Animaciones al hacer scroll
 const observerOptions = {
@@ -126,146 +103,6 @@ if (heroStats) {
     statsObserver.observe(heroStats);
 }
 
-// Simulación de carga de vehículos desde CRM
-function loadVehiclesFromCRM() {
-    // Esta función simula la carga de datos desde un CRM
-    // En un caso real, aquí harías una llamada a tu API
-    
-    const sampleVehicles = [
-        {
-            id: 1,
-            name: "Toyota Corolla 2023",
-            price: "$25,000,000",
-            category: "sedan",
-            transmission: "Automático",
-            engine: "1.8L",
-            passengers: "5 pasajeros",
-            image: "fas fa-car"
-        },
-        {
-            id: 2,
-            name: "Honda CR-V 2023",
-            price: "$35,000,000",
-            category: "suv",
-            transmission: "Automático",
-            engine: "2.0L",
-            passengers: "7 pasajeros",
-            image: "fas fa-car"
-        },
-        {
-            id: 3,
-            name: "Volkswagen Golf 2023",
-            price: "$28,000,000",
-            category: "hatchback",
-            transmission: "Manual",
-            engine: "1.4L",
-            passengers: "5 pasajeros",
-            image: "fas fa-car"
-        },
-        {
-            id: 4,
-            name: "Ford Ranger 2023",
-            price: "$45,000,000",
-            category: "pickup",
-            transmission: "Automático",
-            engine: "2.3L",
-            passengers: "5 pasajeros",
-            image: "fas fa-car"
-        },
-        {
-            id: 5,
-            name: "Nissan Sentra 2023",
-            price: "$22,000,000",
-            category: "sedan",
-            transmission: "Automático",
-            engine: "1.6L",
-            passengers: "5 pasajeros",
-            image: "fas fa-car"
-        },
-        {
-            id: 6,
-            name: "Chevrolet Equinox 2023",
-            price: "$32,000,000",
-            category: "suv",
-            transmission: "Automático",
-            engine: "1.5L",
-            passengers: "5 pasajeros",
-            image: "fas fa-car"
-        }
-    ];
-    
-    return sampleVehicles;
-}
-
-// Función para renderizar vehículos
-function renderVehicles(vehicles) {
-    const vehiclesGrid = document.getElementById('vehiclesGrid');
-    vehiclesGrid.innerHTML = '';
-    
-    vehicles.forEach(vehicle => {
-        const vehicleCard = document.createElement('div');
-        vehicleCard.className = 'vehicle-card fade-in';
-        vehicleCard.setAttribute('data-category', vehicle.category);
-        
-        vehicleCard.innerHTML = `
-            <div class="vehicle-image">
-                <i class="${vehicle.image}"></i>
-            </div>
-            <div class="vehicle-info">
-                <h3>${vehicle.name}</h3>
-                <p class="vehicle-price">${vehicle.price}</p>
-                <div class="vehicle-details">
-                    <span><i class="fas fa-cog"></i> ${vehicle.transmission}</span>
-                    <span><i class="fas fa-gas-pump"></i> ${vehicle.engine}</span>
-                    <span><i class="fas fa-users"></i> ${vehicle.passengers}</span>
-                </div>
-                <button class="btn btn-outline" onclick="showVehicleDetails(${vehicle.id})">Ver Detalles</button>
-            </div>
-        `;
-        
-        vehiclesGrid.appendChild(vehicleCard);
-        observer.observe(vehicleCard);
-    });
-}
-
-// Función para mostrar detalles del vehículo
-function showVehicleDetails(vehicleId) {
-    // Aquí podrías abrir un modal o redirigir a una página de detalles
-    alert(`Mostrando detalles del vehículo ID: ${vehicleId}\n\nEn una implementación real, esto abriría un modal con información detallada del vehículo.`);
-}
-
-// Cargar vehículos al inicializar la página
-document.addEventListener('DOMContentLoaded', () => {
-    const vehicles = loadVehiclesFromCRM();
-    renderVehicles(vehicles);
-});
-
-// Formulario de contacto (si se agrega en el futuro)
-function handleContactForm(event) {
-    event.preventDefault();
-    // Aquí manejarías el envío del formulario
-    alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-}
-
-// Lazy loading para imágenes (si se agregan imágenes reales)
-function lazyLoadImages() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => imageObserver.observe(img));
-}
-
-// Inicializar lazy loading
-document.addEventListener('DOMContentLoaded', lazyLoadImages);
 
 // Función para integrar con Google Maps (cuando se implemente)
 function initMap() {
@@ -398,59 +235,443 @@ window.GPAutomoviles = {
     showNotification,
     validateForm,
     formatCurrency,
-    fetchFromCRM,
-    loadVehiclesFromCRM,
+    loadVehiclesFromSupabase,
     renderVehicles
 };
 
 
-// Mostrar autos
-const HUBSPOT_TOKEN = "pat-xxxxxxxxxxxxxxxx"; // ⚠️ solo para pruebas locales
-const container = document.getElementById("vehicles-container");
+// Integración con Supabase para mostrar autos
+const SUPABASE_URL = 'https://avnpyazxusstgcdeufcw.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2bnB5YXp4dXNzdGdjZGV1ZmN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTI5NTQsImV4cCI6MjA3NTg2ODk1NH0.295vriO7O4I2ak5I2XqCysIVQ-KQSRIm4umkb_E_dsA';
 
-async function fetchVehicles() {
-  const url =
-    "https://api.hubapi.com/crm/v3/objects/products?limit=100&properties=name,price,description,image_url,brand,model,year,kilometers,transmission,color";
+// Inicializar Supabase
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${HUBSPOT_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-  });
+// Función para cargar autos desde Supabase
+async function loadVehiclesFromSupabase() {
+  try {
+    console.log('Cargando autos desde Supabase...');
+    const { data, error } = await supabaseClient
+      .from('Autos')
+      .select('*')
+      .order('id', { ascending: false });
 
-  if (!res.ok) {
-    container.innerHTML = "<p>Error al cargar los autos.</p>";
+    if (error) {
+      console.error('Error al cargar autos:', error);
+      return [];
+    }
+
+    console.log('Autos cargados exitosamente:', data?.length || 0);
+    return data || [];
+  } catch (error) {
+    console.error('Error de conexión:', error);
     return [];
   }
-
-  const data = await res.json();
-  return data.results.map((r) => r.properties);
 }
 
+// Función para renderizar autos en el sitio principal
 async function renderVehicles() {
-  const vehicles = await fetchVehicles();
+  const vehiclesGrid = document.getElementById('vehiclesGrid');
+  if (!vehiclesGrid) return;
 
-  if (!vehicles.length) {
-    container.innerHTML = "<p>No hay autos publicados actualmente.</p>";
+  try {
+    const vehicles = await loadVehiclesFromSupabase();
+
+    if (!vehicles || vehicles.length === 0) {
+      vehiclesGrid.innerHTML = `
+        <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+          <i class="fas fa-car" style="font-size: 3rem; color: #9ca3af; margin-bottom: 1rem;"></i>
+          <h3 style="color: #6b7280; margin-bottom: 0.5rem;">No hay vehículos disponibles</h3>
+          <p style="color: #9ca3af;">Pronto tendremos nuevos vehículos para ti</p>
+        </div>
+      `;
+      return;
+    }
+
+    vehiclesGrid.innerHTML = vehicles
+      .map(vehicle => {
+        const hasImages = vehicle.imagenes && vehicle.imagenes.length > 0;
+        
+        return `
+          <div class="vehicle-card">
+            <div class="vehicle-image">
+              ${hasImages 
+                ? `<img src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`
+                : `<i class="fas fa-car" style="font-size: 3rem; color: #9ca3af;"></i>`
+              }
+            </div>
+            <div class="vehicle-info">
+              <h3>${vehicle.marca} ${vehicle.modelo}</h3>
+              <p class="vehicle-price">$${Number(vehicle.precio).toLocaleString()}</p>
+              <div class="vehicle-details">
+                <span><i class="fas fa-calendar"></i> ${vehicle.anio || 'N/A'}</span>
+                <span><i class="fas fa-tachometer-alt"></i> ${vehicle.kilometraje ? `${vehicle.kilometraje.toLocaleString()} km` : 'N/A'}</span>
+                <span><i class="fas fa-cog"></i> ${vehicle.transmision || 'N/A'}</span>
+              </div>
+              ${vehicle.descripcion ? `<p class="vehicle-description">${vehicle.descripcion.substring(0, 100)}${vehicle.descripcion.length > 100 ? '...' : ''}</p>` : ''}
+              <button class="btn btn-outline" onclick="showVehicleDetails('${vehicle.id}')">Ver Detalles</button>
+            </div>
+          </div>
+        `;
+      })
+      .join('');
+    
+  } catch (error) {
+    console.error('Error al renderizar vehículos:', error);
+    vehiclesGrid.innerHTML = `
+      <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
+        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;"></i>
+        <h3 style="color: #ef4444; margin-bottom: 0.5rem;">Error al cargar vehículos</h3>
+        <p style="color: #6b7280;">Por favor, recarga la página e intenta nuevamente</p>
+      </div>
+    `;
+  }
+}
+
+
+// Función para cambiar imagen en el modal
+window.changeModalImage = function(vehicleId, direction) {
+  console.log('changeModalImage called:', vehicleId, direction);
+  
+  const images = window[`modalImages_${vehicleId}`];
+  console.log('Images found:', images);
+  
+  if (!images || images.length <= 1) {
+    console.log('No images or only one image');
     return;
   }
-
-  container.innerHTML = vehicles
-    .map(
-      (v) => `
-      <div class="card">
-        <img src="${v.image_url || 'assets/logo.jpeg'}" alt="${v.name}" />
-        <h2>${v.name}</h2>
-        <p>${v.brand || ''} ${v.model || ''} ${v.year ? `• ${v.year}` : ''}</p>
-        <p>${v.kilometers ? `${v.kilometers} km` : ''}</p>
-        <p>${v.transmission || ''}</p>
-        <p class="price">$${Number(v.price || 0).toLocaleString()}</p>
-        <p>${v.description || ''}</p>
-      </div>
-    `
-    )
-    .join("");
+  
+  // Buscar el modal activo
+  const modal = document.querySelector('.vehicle-modal');
+  console.log('Modal found:', modal);
+  
+  if (!modal) return;
+  
+  const mainImg = modal.querySelector('#modal-main-img');
+  const currentSpan = modal.querySelector('#modal-current');
+  const thumbnails = modal.querySelectorAll('.modal-thumbnail');
+  
+  console.log('Elements found:', { mainImg, currentSpan, thumbnails: thumbnails.length });
+  
+  if (!mainImg || !currentSpan) return;
+  
+  const currentIndex = parseInt(currentSpan.textContent) - 1;
+  let newIndex = currentIndex + direction;
+  
+  console.log('Current index:', currentIndex, 'New index:', newIndex);
+  
+  // Manejar el bucle
+  if (newIndex >= images.length) {
+    newIndex = 0;
+  } else if (newIndex < 0) {
+    newIndex = images.length - 1;
+  }
+  
+  console.log('Final new index:', newIndex);
+  
+  // Cambiar imagen principal
+  mainImg.src = images[newIndex];
+  
+  // Actualizar contador
+  currentSpan.textContent = newIndex + 1;
+  
+  // Actualizar thumbnails
+  thumbnails.forEach((thumb, index) => {
+    if (index === newIndex) {
+      thumb.classList.add('active');
+      thumb.style.border = '2px solid #3b82f6';
+    } else {
+      thumb.classList.remove('active');
+      thumb.style.border = '2px solid transparent';
+    }
+  });
+  
+  console.log('Image changed successfully');
 }
 
-renderVehicles();
+// Función para establecer imagen específica en el modal
+window.setModalImage = function(vehicleId, index) {
+  console.log('setModalImage called:', vehicleId, index);
+  
+  const images = window[`modalImages_${vehicleId}`];
+  console.log('Images found:', images);
+  
+  if (!images || index < 0 || index >= images.length) {
+    console.log('Invalid images or index');
+    return;
+  }
+  
+  // Buscar el modal activo
+  const modal = document.querySelector('.vehicle-modal');
+  console.log('Modal found:', modal);
+  
+  if (!modal) return;
+  
+  const mainImg = modal.querySelector('#modal-main-img');
+  const currentSpan = modal.querySelector('#modal-current');
+  const thumbnails = modal.querySelectorAll('.modal-thumbnail');
+  
+  console.log('Elements found:', { mainImg, currentSpan, thumbnails: thumbnails.length });
+  
+  if (!mainImg || !currentSpan) return;
+  
+  // Cambiar imagen principal
+  mainImg.src = images[index];
+  
+  // Actualizar contador
+  currentSpan.textContent = index + 1;
+  
+  // Actualizar thumbnails
+  thumbnails.forEach((thumb, i) => {
+    if (i === index) {
+      thumb.classList.add('active');
+      thumb.style.border = '2px solid #3b82f6';
+    } else {
+      thumb.classList.remove('active');
+      thumb.style.border = '2px solid transparent';
+    }
+  });
+  
+  console.log('Image set successfully');
+}
+
+// Función para mostrar detalles del vehículo
+async function showVehicleDetails(vehicleId) {
+  try {
+    const { data: vehicle, error } = await supabaseClient
+      .from('Autos')
+      .select('*')
+      .eq('id', vehicleId)
+      .single();
+
+    if (error) {
+      console.error('Error al cargar detalles del vehículo:', error);
+      showNotification('Error al cargar los detalles del vehículo', 'error');
+      return;
+    }
+
+    if (!vehicle) {
+      showNotification('Vehículo no encontrado', 'error');
+      return;
+    }
+
+    // Crear modal con detalles del vehículo
+    const modal = document.createElement('div');
+    modal.className = 'vehicle-modal';
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      padding: 20px;
+    `;
+
+    modal.innerHTML = `
+      <div class="modal-content" style="
+        background: white;
+        border-radius: 12px;
+        max-width: 800px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+      ">
+        <button class="close-modal" style="
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          background: none;
+          border: none;
+          font-size: 24px;
+          cursor: pointer;
+          color: #6b7280;
+          z-index: 1;
+        ">&times;</button>
+        
+        <div style="padding: 2rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+            <div>
+              ${vehicle.imagenes && vehicle.imagenes.length > 0 
+                ? `
+                  <div class="modal-image-gallery" style="position: relative;">
+                    <div class="modal-main-image" style="width: 100%; height: 300px; position: relative; border-radius: 8px; overflow: hidden;">
+                      <img id="modal-main-img" src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" 
+                           style="width: 100%; height: 100%; object-fit: cover;">
+                      ${vehicle.imagenes.length > 1 ? `
+                        <button class="modal-prev-btn" data-vehicle-id="${vehicle.id}" data-direction="-1"
+                                style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); 
+                                       background: rgba(0,0,0,0.5); color: white; border: none; 
+                                       border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                          <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="modal-next-btn" data-vehicle-id="${vehicle.id}" data-direction="1"
+                                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); 
+                                       background: rgba(0,0,0,0.5); color: white; border: none; 
+                                       border-radius: 50%; width: 40px; height: 40px; cursor: pointer;">
+                          <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <div class="modal-image-counter" 
+                             style="position: absolute; bottom: 10px; right: 10px; 
+                                    background: rgba(0,0,0,0.7); color: white; 
+                                    padding: 5px 10px; border-radius: 15px; font-size: 12px;">
+                          <span id="modal-current">1</span> / <span id="modal-total">${vehicle.imagenes.length}</span>
+                        </div>
+                      ` : ''}
+                    </div>
+                    ${vehicle.imagenes.length > 1 ? `
+                      <div class="modal-thumbnails" style="display: flex; gap: 8px; margin-top: 10px; overflow-x: auto;">
+                        ${vehicle.imagenes.map((img, index) => `
+                          <img src="${img}" alt="Thumbnail ${index + 1}" 
+                               class="modal-thumbnail ${index === 0 ? 'active' : ''}"
+                               data-vehicle-id="${vehicle.id}" data-image-index="${index}"
+                               style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; 
+                                      cursor: pointer; border: 2px solid ${index === 0 ? '#3b82f6' : 'transparent'};">
+                        `).join('')}
+                      </div>
+                    ` : ''}
+                  </div>
+                `
+                : `<div style="width: 100%; height: 300px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
+              }
+            </div>
+            <div>
+              <h2 style="margin-bottom: 1rem; color: #1f2937;">${vehicle.marca} ${vehicle.modelo}</h2>
+              <p style="font-size: 1.5rem; font-weight: bold; color: #3b82f6; margin-bottom: 1rem;">$${Number(vehicle.precio).toLocaleString()}</p>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
+                  <strong>Año:</strong> ${vehicle.anio || 'N/A'}
+                </div>
+                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
+                  <strong>Kilometraje:</strong> ${vehicle.kilometraje ? `${vehicle.kilometraje.toLocaleString()} km` : 'N/A'}
+                </div>
+                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
+                  <strong>Transmisión:</strong> ${vehicle.transmision || 'N/A'}
+                </div>
+                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
+                  <strong>Combustible:</strong> ${vehicle.combustible || 'N/A'}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          ${vehicle.descripcion ? `
+            <div style="margin-bottom: 2rem;">
+              <h3 style="margin-bottom: 1rem; color: #1f2937;">Descripción</h3>
+              <p style="line-height: 1.6; color: #4b5563;">${vehicle.descripcion}</p>
+            </div>
+          ` : ''}
+          
+          <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="tel:+59899493618" style="
+              background: #10b981;
+              color: white;
+              padding: 0.75rem 1.5rem;
+              border-radius: 6px;
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+            ">
+              <i class="fas fa-phone"></i>
+              Llamar
+            </a>
+            <a href="https://wa.me/59899493618" target="_blank" style="
+              background: #25d366;
+              color: white;
+              padding: 0.75rem 1.5rem;
+              border-radius: 6px;
+              text-decoration: none;
+              display: flex;
+              align-items: center;
+              gap: 0.5rem;
+            ">
+              <i class="fab fa-whatsapp"></i>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Guardar las imágenes del vehículo para el modal
+    window[`modalImages_${vehicle.id}`] = vehicle.imagenes;
+    console.log('Images saved for vehicle', vehicle.id, ':', vehicle.imagenes);
+
+    // Agregar event listeners para los botones del modal
+    const prevBtn = modal.querySelector('.modal-prev-btn');
+    const nextBtn = modal.querySelector('.modal-next-btn');
+    const thumbnails = modal.querySelectorAll('.modal-thumbnail');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Prev button clicked');
+        const vehicleId = prevBtn.getAttribute('data-vehicle-id');
+        console.log('Vehicle ID:', vehicleId);
+        changeModalImage(vehicleId, -1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Next button clicked');
+        const vehicleId = nextBtn.getAttribute('data-vehicle-id');
+        console.log('Vehicle ID:', vehicleId);
+        changeModalImage(vehicleId, 1);
+      });
+    }
+
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Thumbnail clicked');
+        const vehicleId = thumb.getAttribute('data-vehicle-id');
+        const imageIndex = parseInt(thumb.getAttribute('data-image-index'));
+        console.log('Vehicle ID:', vehicleId, 'Index:', imageIndex);
+        setModalImage(vehicleId, imageIndex);
+      });
+    });
+
+    // Cerrar modal
+    const closeModal = () => {
+      document.body.removeChild(modal);
+    };
+
+    modal.querySelector('.close-modal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // Cerrar con ESC
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', handleEsc);
+      }
+    };
+    document.addEventListener('keydown', handleEsc);
+
+  } catch (error) {
+    console.error('Error al mostrar detalles:', error);
+    showNotification('Error al cargar los detalles del vehículo', 'error');
+  }
+}
+
+// Cargar autos cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM cargado, iniciando carga de vehículos...');
+  renderVehicles();
+});
