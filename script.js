@@ -291,9 +291,11 @@ async function renderVehicles() {
     vehiclesGrid.innerHTML = vehicles
       .map(vehicle => {
         const hasImages = vehicle.imagenes && vehicle.imagenes.length > 0;
+        const isOnOffer = vehicle.en_oferta && vehicle.precio_oferta;
         
         return `
-          <div class="vehicle-card">
+          <div class="vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''}">
+            ${isOnOffer ? '<div class="offer-badge">OFERTA</div>' : ''}
             <div class="vehicle-image">
               ${hasImages 
                 ? `<img src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`
@@ -302,7 +304,15 @@ async function renderVehicles() {
             </div>
             <div class="vehicle-info">
               <h3>${vehicle.marca} ${vehicle.modelo}</h3>
-              <p class="vehicle-price">$${Number(vehicle.precio).toLocaleString()}</p>
+              ${isOnOffer ? `
+                <div class="price-container">
+                  <p class="vehicle-price-original">$${Number(vehicle.precio).toLocaleString()}</p>
+                  <p class="vehicle-price-offer">$${Number(vehicle.precio_oferta).toLocaleString()}</p>
+                  <div class="savings">Ahorrás $${(Number(vehicle.precio) - Number(vehicle.precio_oferta)).toLocaleString()}</div>
+                </div>
+              ` : `
+                <p class="vehicle-price">$${Number(vehicle.precio).toLocaleString()}</p>
+              `}
               <div class="vehicle-details">
                 <span><i class="fas fa-calendar"></i> ${vehicle.año || 'N/A'}</span>
               </div>
@@ -544,7 +554,21 @@ async function showVehicleDetails(vehicleId) {
             <div style="display: flex; flex-direction: column; gap: 1.5rem;">
               <div>
                 <h2 style="margin-bottom: 1rem; color: #1f2937; font-size: 2rem;">${vehicle.marca} ${vehicle.modelo}</h2>
-                <p style="font-size: 1.8rem; font-weight: bold; color: #3b82f6; margin-bottom: 1.5rem;">$${Number(vehicle.precio).toLocaleString()}</p>
+                ${vehicle.en_oferta && vehicle.precio_oferta ? `
+                  <div style="margin-bottom: 1.5rem;">
+                    <div style="font-size: 1.4rem; color: #6b7280; text-decoration: line-through; margin-bottom: 0.5rem;">
+                      Precio original: $${Number(vehicle.precio).toLocaleString()}
+                    </div>
+                    <div style="font-size: 2.2rem; font-weight: bold; color: #dc3545; margin-bottom: 0.5rem;">
+                      Precio oferta: $${Number(vehicle.precio_oferta).toLocaleString()}
+                    </div>
+                    <div style="background: linear-gradient(135deg, #dc3545, #c82333); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 1rem; font-weight: 600; display: inline-block; box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);">
+                      ¡Ahorrás $${(Number(vehicle.precio) - Number(vehicle.precio_oferta)).toLocaleString()}!
+                    </div>
+                  </div>
+                ` : `
+                  <p style="font-size: 1.8rem; font-weight: bold; color: #3b82f6; margin-bottom: 1.5rem;">$${Number(vehicle.precio).toLocaleString()}</p>
+                `}
               </div>
               
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">

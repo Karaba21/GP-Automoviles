@@ -398,6 +398,71 @@ section {
     margin-bottom: 1rem;
 }
 
+/* Estilos para ofertas */
+.vehicle-card-offer {
+    position: relative;
+    border: 2px solid #dc3545;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2);
+}
+
+.vehicle-card-offer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+}
+
+.offer-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.price-container {
+    margin-bottom: 1rem;
+}
+
+.vehicle-price-original {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #6b7280;
+    text-decoration: line-through;
+    margin-bottom: 0.25rem;
+}
+
+.vehicle-price-offer {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #dc3545;
+    margin-bottom: 0.5rem;
+}
+
+.savings {
+    background: linear-gradient(135deg, #dc3545, #c82333);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+}
+
 .vehicle-details {
     display: flex;
     gap: 1rem;
