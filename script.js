@@ -304,9 +304,7 @@ async function renderVehicles() {
               <h3>${vehicle.marca} ${vehicle.modelo}</h3>
               <p class="vehicle-price">$${Number(vehicle.precio).toLocaleString()}</p>
               <div class="vehicle-details">
-                <span><i class="fas fa-calendar"></i> ${vehicle.anio || 'N/A'}</span>
-                <span><i class="fas fa-tachometer-alt"></i> ${vehicle.kilometraje ? `${vehicle.kilometraje.toLocaleString()} km` : 'N/A'}</span>
-                <span><i class="fas fa-cog"></i> ${vehicle.transmision || 'N/A'}</span>
+                <span><i class="fas fa-calendar"></i> ${vehicle.año || 'N/A'}</span>
               </div>
               ${vehicle.descripcion ? `<p class="vehicle-description">${vehicle.descripcion.substring(0, 100)}${vehicle.descripcion.length > 100 ? '...' : ''}</p>` : ''}
               <button class="btn btn-outline" onclick="showVehicleDetails('${vehicle.id}')">Ver Detalles</button>
@@ -476,9 +474,9 @@ async function showVehicleDetails(vehicleId) {
       <div class="modal-content" style="
         background: white;
         border-radius: 12px;
-        max-width: 800px;
+        max-width: 1200px;
         width: 100%;
-        max-height: 90vh;
+        max-height: 95vh;
         overflow-y: auto;
         position: relative;
       ">
@@ -495,12 +493,13 @@ async function showVehicleDetails(vehicleId) {
         ">&times;</button>
         
         <div style="padding: 2rem;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+            <!-- Lado izquierdo: Fotos -->
             <div>
               ${vehicle.imagenes && vehicle.imagenes.length > 0 
                 ? `
                   <div class="modal-image-gallery" style="position: relative;">
-                    <div class="modal-main-image" style="width: 100%; height: 300px; position: relative; border-radius: 8px; overflow: hidden;">
+                    <div class="modal-main-image" style="width: 100%; height: 400px; position: relative; border-radius: 8px; overflow: hidden;">
                       <img id="modal-main-img" src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" 
                            style="width: 100%; height: 100%; object-fit: cover;">
                       ${vehicle.imagenes.length > 1 ? `
@@ -537,64 +536,70 @@ async function showVehicleDetails(vehicleId) {
                     ` : ''}
                   </div>
                 `
-                : `<div style="width: 100%; height: 300px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
+                : `<div style="width: 100%; height: 400px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
               }
             </div>
-            <div>
-              <h2 style="margin-bottom: 1rem; color: #1f2937;">${vehicle.marca} ${vehicle.modelo}</h2>
-              <p style="font-size: 1.5rem; font-weight: bold; color: #3b82f6; margin-bottom: 1rem;">$${Number(vehicle.precio).toLocaleString()}</p>
-              
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
-                  <strong>Año:</strong> ${vehicle.anio || 'N/A'}
-                </div>
-                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
-                  <strong>Kilometraje:</strong> ${vehicle.kilometraje ? `${vehicle.kilometraje.toLocaleString()} km` : 'N/A'}
-                </div>
-                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
-                  <strong>Transmisión:</strong> ${vehicle.transmision || 'N/A'}
-                </div>
-                <div style="padding: 0.75rem; background: #f9fafb; border-radius: 6px;">
-                  <strong>Combustible:</strong> ${vehicle.combustible || 'N/A'}
-                </div>
+            
+            <!-- Lado derecho: Toda la información de texto -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <h2 style="margin-bottom: 1rem; color: #1f2937; font-size: 2rem;">${vehicle.marca} ${vehicle.modelo}</h2>
+                <p style="font-size: 1.8rem; font-weight: bold; color: #3b82f6; margin-bottom: 1.5rem;">$${Number(vehicle.precio).toLocaleString()}</p>
               </div>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div style="padding: 1rem; background: #f9fafb; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                  <strong style="color: #1f2937;">Año:</strong><br>
+                  <span style="color: #4b5563;">${vehicle.año || 'N/A'}</span>
+                </div>
+                
+              </div>
+              
+              ${vehicle.descripcion ? `
+                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+                  <h3 style="margin-bottom: 1rem; color: #1f2937; font-size: 1.2rem;">Descripción</h3>
+                  <p style="line-height: 1.6; color: #4b5563; margin: 0;">${vehicle.descripcion}</p>
+                </div>
+              ` : ''}
+              
+              <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                <a href="tel:+59899493618" style="
+                  background: #10b981;
+                  color: white;
+                  padding: 1rem 2rem;
+                  border-radius: 8px;
+                  text-decoration: none;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  font-weight: 600;
+                  transition: all 0.3s ease;
+                  flex: 1;
+                  justify-content: center;
+                " onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">
+                  <i class="fas fa-phone"></i>
+                  Llamar
+                </a>
+                <a href="#" onclick="generateVehicleWhatsAppMessage('${vehicle.marca}', '${vehicle.modelo}', '${vehicle.año}'); return false;" style="
+                  background: #25d366;
+                  color: white;
+                  padding: 1rem 2rem;
+                  border-radius: 8px;
+                  text-decoration: none;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  font-weight: 600;
+                  transition: all 0.3s ease;
+                  flex: 1;
+                  justify-content: center;
+                " onmouseover="this.style.background='#128c7e'" onmouseout="this.style.background='#25d366'">
+                  <i class="fab fa-whatsapp"></i>
+                  WhatsApp
+                </a>
+              </div>
+              
             </div>
-          </div>
-          
-          ${vehicle.descripcion ? `
-            <div style="margin-bottom: 2rem;">
-              <h3 style="margin-bottom: 1rem; color: #1f2937;">Descripción</h3>
-              <p style="line-height: 1.6; color: #4b5563;">${vehicle.descripcion}</p>
-            </div>
-          ` : ''}
-          
-          <div style="display: flex; gap: 1rem; justify-content: center;">
-            <a href="tel:+59899493618" style="
-              background: #10b981;
-              color: white;
-              padding: 0.75rem 1.5rem;
-              border-radius: 6px;
-              text-decoration: none;
-              display: flex;
-              align-items: center;
-              gap: 0.5rem;
-            ">
-              <i class="fas fa-phone"></i>
-              Llamar
-            </a>
-            <a href="https://wa.me/59899493618" target="_blank" style="
-              background: #25d366;
-              color: white;
-              padding: 0.75rem 1.5rem;
-              border-radius: 6px;
-              text-decoration: none;
-              display: flex;
-              align-items: center;
-              gap: 0.5rem;
-            ">
-              <i class="fab fa-whatsapp"></i>
-              WhatsApp
-            </a>
           </div>
         </div>
       </div>
@@ -668,6 +673,25 @@ async function showVehicleDetails(vehicleId) {
     console.error('Error al mostrar detalles:', error);
     showNotification('Error al cargar los detalles del vehículo', 'error');
   }
+}
+
+// Función para generar mensaje de WhatsApp para vehículo específico del modal
+function generateVehicleWhatsAppMessage(marca, modelo, año) {
+  // Construir mensaje personalizado para el vehículo
+  let mensaje = `¡Hola! Me interesa este vehículo: *${marca} ${modelo} ${año}*\n\n`;
+  mensaje += `¿Podrían darme más información sobre este auto? ¿Está disponible? ¿Cuáles son las condiciones de pago?\n\n`;
+  mensaje += `¡Gracias!`;
+  
+  // Número de WhatsApp (usar el número real de GP Automóviles)
+  const whatsappNumber = '59899493618';
+  const encodedMessage = encodeURIComponent(mensaje);
+  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+  
+  // Abrir WhatsApp
+  window.open(whatsappUrl, '_blank');
+  
+  // Mostrar notificación de éxito
+  showNotification('Redirigiendo a WhatsApp...', 'success');
 }
 
 // Función para generar mensaje de WhatsApp con datos del formulario
