@@ -823,7 +823,7 @@ const serviceData = {
   'financiacion-casa': {
     title: 'Financiación de la Casa',
     content: `
-      Entregando el 50% del valor del vehículo +650usd títulos(se pueden agregar a el crédito), prenda y vale el otro 50% hasta en 36 cuotas. NO IMPORTA CLEARING. También como forma de pago aceptamos vehículos que cubran el 50% o más.
+      Entregando el 50% del valor del vehículo +650usd títulos (se pueden agregar a el crédito), prenda y vale el otro 50% hasta en 36 cuotas. NO IMPORTA CLEARING. También como forma de pago aceptamos vehículos que cubran el 50% o más.
       <p>Para acceder a esta financiación hay que:</p>
       <p>- Asegurar auto contra todo, con sección de derechos.</p>
       <p>- Garantes de uno a dos (depende)</p>
@@ -839,12 +839,14 @@ const serviceData = {
       <p>-número de celular</p>
       <p>-Email</p>
       <p>-Últimos 3 recibos de sueldo</p>
+
+      <p>Elegí el banco que más te convenga, ¡nosotros nos encargamos del resto!</p>
     `
   },
   'cambio': {
     title: 'Gestión de seguros',
     content: `
-      <p>Gestionamos tu seguro de forma rapido y sencila, con confianza y seguridad.</p>
+      <p>Gestionamos tu seguro de forma rapido y sencilla, con confianza y seguridad.</p>
       <p>Te asesoramos en la mejor opción de seguro para tu vehículo.</p>
     `
   }
