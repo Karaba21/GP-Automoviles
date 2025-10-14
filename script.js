@@ -703,7 +703,7 @@ async function showVehicleDetails(vehicleId) {
 function generateVehicleWhatsAppMessage(marca, modelo, año) {
   // Construir mensaje personalizado para el vehículo
   let mensaje = `¡Hola! Me interesa este vehículo: *${marca} ${modelo} ${año}*\n\n`;
-  mensaje += `¿Podrían darme más información sobre este auto? ¿Está disponible? ¿Cuáles son las condiciones de pago?\n\n`;
+  mensaje += `¿Podrían darme más información sobre este auto? ¿Está disponible? \n\n`;
   mensaje += `¡Gracias!`;
   
   // Número de WhatsApp (usar el número real de GP Automóviles)
@@ -848,6 +848,14 @@ const serviceData = {
     content: `
       <p>Gestionamos tu seguro de forma rapido y sencilla, con confianza y seguridad.</p>
       <p>Te asesoramos en la mejor opción de seguro para tu vehículo.</p>
+    `
+  },
+  'tramites-de-gestion': {
+    title: 'Tramites de gestoría',
+    content: `
+      <p>Titulos de propiedad automotor.</p>
+      <p>Certificados de actos personales y automotor.</p>
+      <p>Transferencia y/o reempadronamiento.</p>
     `
   }
 };
