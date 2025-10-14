@@ -817,3 +817,82 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM cargado, iniciando carga de vehículos...');
   renderVehicles();
 });
+
+// Funcionalidad del Modal de Servicios
+const serviceData = {
+  'financiacion-casa': {
+    title: 'Financiación de la Casa',
+    content: `
+      Entregando el 50% del valor del vehículo +650usd títulos(se pueden agregar a el crédito), prenda y vale el otro 50% hasta en 36 cuotas. NO IMPORTA CLEARING. También como forma de pago aceptamos vehículos que cubran el 50% o más.
+      <p>Para acceder a esta financiación hay que:</p>
+      <p>- Asegurar auto contra todo, con sección de derechos.</p>
+      <p>- Garantes de uno a dos (depende)</p>
+      <p>- Recibos de sueldos</p>
+    `
+  },
+  'financiacion-bancaria-2': {
+    title: 'Financiación Bancaria',
+    content: `
+      <p>No estar en clearing, recibos de sueldo y más de 6 meses de antigüedad laboral!</p>
+      <p>REQUISITOS PARA SIMULACIÓN DE PRÉSTAMO MIAUTO SANTANDER</p>
+      <p>-foto cédula de identidad </p>
+      <p>-número de celular</p>
+      <p>-Email</p>
+      <p>-Últimos 3 recibos de sueldo</p>
+    `
+  },
+  'cambio': {
+    title: 'Gestión de seguros',
+    content: `
+      <p>Gestionamos tu seguro de forma rapido y sencila, con confianza y seguridad.</p>
+      <p>Te asesoramos en la mejor opción de seguro para tu vehículo.</p>
+    `
+  }
+};
+
+// Función para abrir el modal de servicios
+function openServiceModal(serviceId) {
+  const modal = document.getElementById('serviceModal');
+  const service = serviceData[serviceId];
+  
+  if (!service) {
+    console.error('Servicio no encontrado:', serviceId);
+    return;
+  }
+  
+  // Actualizar contenido del modal
+  document.getElementById('serviceModalTitle').textContent = service.title;
+  document.getElementById('serviceModalContent').innerHTML = service.content;
+  
+  // Mostrar modal
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  
+  // Agregar event listener para cerrar con ESC
+  const handleEsc = (e) => {
+    if (e.key === 'Escape') {
+      closeServiceModal();
+      document.removeEventListener('keydown', handleEsc);
+    }
+  };
+  document.addEventListener('keydown', handleEsc);
+}
+
+// Función para cerrar el modal de servicios
+function closeServiceModal() {
+  const modal = document.getElementById('serviceModal');
+  modal.classList.remove('show');
+  document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal al hacer clic fuera del contenido
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('serviceModal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeServiceModal();
+      }
+    });
+  }
+});

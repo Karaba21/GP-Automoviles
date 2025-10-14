@@ -580,6 +580,14 @@ section {
 .service-card p {
     color: var(--text-light);
     font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.service-info-btn {
+    margin-top: auto;
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 8px 16px;
 }
 
 /* Sección Reseñas */
@@ -1447,5 +1455,163 @@ html {
     
     .modal-content p {
         font-size: 1.1rem !important;
+    }
+}
+
+/* Estilos para el Modal de Servicios */
+.service-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.service-modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.service-modal-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease;
+    position: relative;
+}
+
+.service-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 2px solid var(--border-color);
+    background: var(--bg-light);
+    border-radius: 16px 16px 0 0;
+}
+
+.service-modal-header h2 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.service-modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.service-modal-close:hover {
+    background: var(--border-color);
+    color: var(--text-dark);
+}
+
+.service-modal-body {
+    padding: 2rem;
+}
+
+.service-modal-text {
+    color: var(--text-dark);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.service-modal-text p {
+    margin-bottom: 1rem;
+}
+
+.service-modal-text p:last-child {
+    margin-bottom: 0;
+}
+
+.service-modal-footer {
+    padding: 1.5rem 2rem;
+    border-top: 2px solid var(--border-color);
+    background: var(--bg-light);
+    border-radius: 0 0 16px 16px;
+    text-align: center;
+}
+
+/* Animaciones para el modal */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive para el modal de servicios */
+@media (max-width: 768px) {
+    .service-modal-content {
+        max-width: 95vw;
+        margin: 10px;
+    }
+    
+    .service-modal-header,
+    .service-modal-body,
+    .service-modal-footer {
+        padding: 1rem 1.5rem;
+    }
+    
+    .service-modal-icon i {
+        font-size: 3rem;
+    }
+    
+    .service-modal-header h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-modal-content {
+        max-width: 98vw;
+        margin: 5px;
+    }
+    
+    .service-modal-header,
+    .service-modal-body,
+    .service-modal-footer {
+        padding: 1rem;
+    }
+    
+    .service-modal-icon i {
+        font-size: 2.5rem;
+    }
+    
+    .service-modal-header h2 {
+        font-size: 1.2rem;
     }
 }

@@ -61,7 +61,9 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Bienvenido a <span class="highlight">GP Automóviles</span></h1>
-                <p>Tu concesionario de confianza con más de 5 años de experiencia en la venta de vehículos de calidad. Encontra el auto perfecto para vos.</p>
+                <p>¡Hola! Somos GP Automóviles, tu mejor aliado a la hora de elegir tu usado o 0 km.
+                    Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se adaptan a vos.
+                    Además, contamos con gestoría propia para brindarte seguridad y tranquilidad en tu compra.</p>
                 <div class="hero-buttons">
                     <a href="#vehiculos" class="btn btn-primary">Ver Vehículos</a>
                     <a href="#ubicacion" class="btn btn-secondary">Visítanos</a>
@@ -112,31 +114,35 @@
     <section id="beneficios" class="benefits">
         <div class="container">
             <div class="section-header">
-                <h2>Beneficios</h2>
+                <h2>Facilidades</h2>
                 <p>La satisfacción de nuestros clientes es nuestra prioridad</p>
             </div>
 
                 <div class="benefits-services">
                     <div class="services-grid">
                         <div class="service-card">
-                            <i class="fas fa-tools"></i>
-                            <h4>Mantenimiento</h4>
-                            <p>Servicio técnico especializado para todos los vehículos</p>
-                        </div>
-                        <div class="service-card">
-                            <i class="fas fa-shield-alt"></i>
-                            <h4>Garantía</h4>
-                            <p>Garantía extendida en todos nuestros vehículos</p>
+                            <i class="fas fa-credit-card"></i>
+                            <h4>Financiacion de la casa</h4>
+                            <p>Entregando el 50%</p>
+                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('financiacion-casa')">
+                                Más info
+                            </button>
                         </div>
                         <div class="service-card">
                             <i class="fas fa-credit-card"></i>
-                            <h4>Financiación</h4>
+                            <h4>Financiación bancaria</h4>
                             <p>Opciones de financiación flexibles y competitivas</p>
+                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('financiacion-bancaria-2')">
+                                Más info
+                            </button>
                         </div>
                         <div class="service-card">
-                            <i class="fas fa-exchange-alt"></i>
-                            <h4>Cambio</h4>
-                            <p>Servicio de cambio y recompra de vehículos</p>
+                            <i class="fas fa-car-side"></i>
+                            <h4>Gestión de seguros</h4>
+                            <p>Gestionamos tu seguro en el momento</p>
+                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('cambio')">
+                                Más info
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -445,6 +451,24 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal de Servicios -->
+    <div id="serviceModal" class="service-modal">
+        <div class="service-modal-content">
+            <div class="service-modal-header">
+                <h2 id="serviceModalTitle">Título del Servicio</h2>
+                <button class="service-modal-close" onclick="closeServiceModal()">&times;</button>
+            </div>
+            <div class="service-modal-body">
+                <div id="serviceModalContent" class="service-modal-text">
+                    <!-- El contenido del servicio aparecerá aquí -->
+                </div>
+            </div>
+            <div class="service-modal-footer">
+                <button class="btn btn-primary" onclick="closeServiceModal()">Cerrar</button>
+            </div>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script src="script.js"></script>
