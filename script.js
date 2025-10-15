@@ -497,7 +497,7 @@ async function showVehicleDetails(vehicleId) {
         background: white;
         border-radius: 12px;
         width: 1200px;
-        height: 700px;
+        height: 800px;
         overflow: hidden;
         position: relative;
         display: flex;
@@ -522,9 +522,9 @@ async function showVehicleDetails(vehicleId) {
               ${vehicle.imagenes && vehicle.imagenes.length > 0 
                 ? `
                   <div class="modal-image-gallery" style="position: relative; flex: 1; display: flex; flex-direction: column;">
-                    <div class="modal-main-image" style="width: 100%; height: 350px; position: relative; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
+                    <div class="modal-main-image" style="width: 100%; height: 450px; position: relative; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
                       <img id="modal-main-img" src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" 
-                           style="width: 100%; height: 100%; object-fit: cover;">
+                           style="width: 100%; height: 100%; object-fit: contain;">
                       ${vehicle.imagenes.length > 1 ? `
                         <button class="modal-prev-btn" data-vehicle-id="${vehicle.id}" data-direction="-1"
                                 style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); 

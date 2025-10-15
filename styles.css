@@ -367,7 +367,7 @@ section {
 }
 
 .vehicle-image {
-    height: 200px;
+    height: 250px;
     background: var(--gradient);
     display: flex;
     align-items: center;
@@ -1412,7 +1412,7 @@ html {
     }
     
     .modal-main-image {
-        height: 250px !important;
+        height: 300px !important;
     }
     
     .modal-thumbnails-container {
@@ -1453,7 +1453,7 @@ html {
     }
     
     .modal-main-image {
-        height: 200px !important;
+        height: 250px !important;
     }
     
     .modal-thumbnails-container {
