@@ -480,15 +480,28 @@ async function showVehicleDetails(vehicleId) {
       padding: 20px;
     `;
 
+    // Función para organizar thumbnails en filas de máximo 8
+    const organizeThumbnails = (images) => {
+      const thumbnailsPerRow = 8;
+      const rows = [];
+      for (let i = 0; i < images.length; i += thumbnailsPerRow) {
+        rows.push(images.slice(i, i + thumbnailsPerRow));
+      }
+      return rows;
+    };
+
+    const thumbnailRows = vehicle.imagenes && vehicle.imagenes.length > 1 ? organizeThumbnails(vehicle.imagenes) : [];
+
     modal.innerHTML = `
       <div class="modal-content" style="
         background: white;
         border-radius: 12px;
-        max-width: 1200px;
-        width: 100%;
-        max-height: 95vh;
-        overflow-y: auto;
+        width: 1200px;
+        height: 700px;
+        overflow: hidden;
         position: relative;
+        display: flex;
+        flex-direction: column;
       ">
         <button class="close-modal" style="
           position: absolute;
@@ -502,14 +515,14 @@ async function showVehicleDetails(vehicleId) {
           z-index: 1;
         ">&times;</button>
         
-        <div style="padding: 2rem;">
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+        <div style="padding: 2rem; height: 100%; display: flex; flex-direction: column;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; flex: 1; min-height: 0;">
             <!-- Lado izquierdo: Fotos -->
-            <div>
+            <div style="display: flex; flex-direction: column; height: 100%;">
               ${vehicle.imagenes && vehicle.imagenes.length > 0 
                 ? `
-                  <div class="modal-image-gallery" style="position: relative;">
-                    <div class="modal-main-image" style="width: 100%; height: 400px; position: relative; border-radius: 8px; overflow: hidden;">
+                  <div class="modal-image-gallery" style="position: relative; flex: 1; display: flex; flex-direction: column;">
+                    <div class="modal-main-image" style="width: 100%; height: 350px; position: relative; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
                       <img id="modal-main-img" src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" 
                            style="width: 100%; height: 100%; object-fit: cover;">
                       ${vehicle.imagenes.length > 1 ? `
@@ -534,63 +547,72 @@ async function showVehicleDetails(vehicleId) {
                       ` : ''}
                     </div>
                     ${vehicle.imagenes.length > 1 ? `
-                      <div class="modal-thumbnails" style="display: flex; gap: 8px; margin-top: 10px; overflow-x: auto;">
-                        ${vehicle.imagenes.map((img, index) => `
-                          <img src="${img}" alt="Thumbnail ${index + 1}" 
-                               class="modal-thumbnail ${index === 0 ? 'active' : ''}"
-                               data-vehicle-id="${vehicle.id}" data-image-index="${index}"
-                               style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; 
-                                      cursor: pointer; border: 2px solid ${index === 0 ? '#3b82f6' : 'transparent'};">
+                      <div class="modal-thumbnails-container" style="margin-top: 10px; flex-shrink: 0; max-height: 120px; overflow-y: auto;">
+                        ${thumbnailRows.map((row, rowIndex) => `
+                          <div class="modal-thumbnails-row" style="display: flex; gap: 8px; margin-bottom: 8px; justify-content: flex-start;">
+                            ${row.map((img, index) => {
+                              const globalIndex = rowIndex * 8 + index;
+                              return `
+                                <img src="${img}" alt="Thumbnail ${globalIndex + 1}" 
+                                     class="modal-thumbnail ${globalIndex === 0 ? 'active' : ''}"
+                                     data-vehicle-id="${vehicle.id}" data-image-index="${globalIndex}"
+                                     style="width: 60px; height: 60px; object-fit: cover; border-radius: 4px; 
+                                            cursor: pointer; border: 2px solid ${globalIndex === 0 ? '#3b82f6' : 'transparent'}; 
+                                            flex-shrink: 0;">
+                              `;
+                            }).join('')}
+                          </div>
                         `).join('')}
                       </div>
                     ` : ''}
                   </div>
                 `
-                : `<div style="width: 100%; height: 400px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
+                : `<div style="width: 100%; height: 350px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
               }
             </div>
             
             <!-- Lado derecho: Toda la información de texto -->
-            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-              <div>
-                <h2 style="margin-bottom: 1rem; color: #1f2937; font-size: 2rem;">${vehicle.marca} ${vehicle.modelo}</h2>
+            <div style="display: flex; flex-direction: column; gap: 1rem; height: 100%; overflow: hidden;">
+              <div style="flex-shrink: 0;">
+                <h2 style="margin-bottom: 1rem; color: #1f2937; font-size: 1.8rem;">${vehicle.marca} ${vehicle.modelo}</h2>
                 ${vehicle.en_oferta && vehicle.precio_oferta ? `
-                  <div style="margin-bottom: 1.5rem;">
-                    <div style="font-size: 1.4rem; color: #6b7280; text-decoration: line-through; margin-bottom: 0.5rem;">
+                  <div style="margin-bottom: 1rem;">
+                    <div style="font-size: 1.2rem; color: #6b7280; text-decoration: line-through; margin-bottom: 0.5rem;">
                       Precio original: $${Number(vehicle.precio).toLocaleString()}
                     </div>
-                    <div style="font-size: 2.2rem; font-weight: bold; color: #dc3545; margin-bottom: 0.5rem;">
+                    <div style="font-size: 1.8rem; font-weight: bold; color: #dc3545; margin-bottom: 0.5rem;">
                       Precio oferta: $${Number(vehicle.precio_oferta).toLocaleString()}
                     </div>
-                    <div style="background: linear-gradient(135deg, #dc3545, #c82333); color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 1rem; font-weight: 600; display: inline-block; box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);">
+                    <div style="background: linear-gradient(135deg, #dc3545, #c82333); color: white; padding: 0.4rem 0.8rem; border-radius: 15px; font-size: 0.9rem; font-weight: 600; display: inline-block; box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);">
                       ¡Ahorrás $${(Number(vehicle.precio) - Number(vehicle.precio_oferta)).toLocaleString()}!
                     </div>
                   </div>
                 ` : `
-                  <p style="font-size: 1.8rem; font-weight: bold; color: #3b82f6; margin-bottom: 1.5rem;">$${Number(vehicle.precio).toLocaleString()}</p>
+                  <p style="font-size: 1.6rem; font-weight: bold; color: #3b82f6; margin-bottom: 1rem;">$${Number(vehicle.precio).toLocaleString()}</p>
                 `}
               </div>
               
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                <div style="padding: 1rem; background: #f9fafb; border-radius: 8px; border-left: 4px solid #3b82f6;">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; flex-shrink: 0;">
+                <div style="padding: 0.8rem; background: #f9fafb; border-radius: 8px; border-left: 4px solid #3b82f6;">
                   <strong style="color: #1f2937;">Año:</strong><br>
                   <span style="color: #4b5563;">${vehicle.año || 'N/A'}</span>
                 </div>
-                
               </div>
               
               ${vehicle.descripcion ? `
-                <div style="background: #f8fafc; padding: 1.5rem; border-radius: 8px; border: 1px solid #e2e8f0;">
-                  <h3 style="margin-bottom: 1rem; color: #1f2937; font-size: 1.2rem;">Descripción</h3>
-                  <p style="line-height: 1.6; color: #4b5563; margin: 0;">${vehicle.descripcion}</p>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0; flex: 1; overflow: hidden; display: flex; flex-direction: column;">
+                  <h3 style="margin-bottom: 0.8rem; color: #1f2937; font-size: 1.1rem; flex-shrink: 0;">Descripción</h3>
+                  <div style="overflow-y: auto; flex: 1; padding-right: 5px;">
+                    <p style="line-height: 1.5; color: #4b5563; margin: 0; font-size: 0.9rem;">${vehicle.descripcion}</p>
+                  </div>
                 </div>
               ` : ''}
               
-              <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <div style="display: flex; gap: 1rem; flex-shrink: 0;">
                 <a href="tel:+59899493618" style="
                   background: #10b981;
                   color: white;
-                  padding: 1rem 2rem;
+                  padding: 0.8rem 1.5rem;
                   border-radius: 8px;
                   text-decoration: none;
                   display: flex;
@@ -600,6 +622,7 @@ async function showVehicleDetails(vehicleId) {
                   transition: all 0.3s ease;
                   flex: 1;
                   justify-content: center;
+                  font-size: 0.9rem;
                 " onmouseover="this.style.background='#059669'" onmouseout="this.style.background='#10b981'">
                   <i class="fas fa-phone"></i>
                   Llamar
@@ -607,7 +630,7 @@ async function showVehicleDetails(vehicleId) {
                 <a href="#" onclick="generateVehicleWhatsAppMessage('${vehicle.marca}', '${vehicle.modelo}', '${vehicle.año}'); return false;" style="
                   background: #25d366;
                   color: white;
-                  padding: 1rem 2rem;
+                  padding: 0.8rem 1.5rem;
                   border-radius: 8px;
                   text-decoration: none;
                   display: flex;
@@ -617,6 +640,7 @@ async function showVehicleDetails(vehicleId) {
                   transition: all 0.3s ease;
                   flex: 1;
                   justify-content: center;
+                  font-size: 0.9rem;
                 " onmouseover="this.style.background='#128c7e'" onmouseout="this.style.background='#25d366'">
                   <i class="fab fa-whatsapp"></i>
                   WhatsApp

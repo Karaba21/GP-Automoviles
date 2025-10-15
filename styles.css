@@ -1388,10 +1388,17 @@ html {
 }
 
 /* Modal responsive styles */
+@media (max-width: 1300px) {
+    .modal-content {
+        width: 95vw !important;
+        height: 80vh !important;
+    }
+}
+
 @media (max-width: 768px) {
     .modal-content {
-        max-width: 95vw !important;
-        max-height: 90vh !important;
+        width: 95vw !important;
+        height: 85vh !important;
         margin: 10px !important;
     }
     
@@ -1408,8 +1415,8 @@ html {
         height: 250px !important;
     }
     
-    .modal-thumbnails {
-        justify-content: center !important;
+    .modal-thumbnails-container {
+        max-height: 100px !important;
     }
     
     .modal-thumbnail {
@@ -1436,8 +1443,8 @@ html {
 
 @media (max-width: 480px) {
     .modal-content {
-        max-width: 98vw !important;
-        max-height: 95vh !important;
+        width: 98vw !important;
+        height: 90vh !important;
         margin: 5px !important;
     }
     
@@ -1447,6 +1454,15 @@ html {
     
     .modal-main-image {
         height: 200px !important;
+    }
+    
+    .modal-thumbnails-container {
+        max-height: 80px !important;
+    }
+    
+    .modal-thumbnail {
+        width: 45px !important;
+        height: 45px !important;
     }
     
     .modal-content h2 {
@@ -1614,4 +1630,48 @@ html {
     .service-modal-header h2 {
         font-size: 1.2rem;
     }
+}
+
+/* Estilos adicionales para thumbnails del modal de vehículos */
+.modal-thumbnails-container {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 #f1f5f9;
+}
+
+.modal-thumbnails-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal-thumbnails-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.modal-thumbnails-container::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 3px;
+}
+
+.modal-thumbnails-container::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+.modal-thumbnails-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+    justify-content: flex-start;
+}
+
+.modal-thumbnails-row:last-child {
+    margin-bottom: 0;
+}
+
+.modal-thumbnail {
+    transition: all 0.3s ease;
+}
+
+.modal-thumbnail:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
