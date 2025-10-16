@@ -269,15 +269,23 @@ async function loadVehiclesFromSupabase() {
   }
 }
 
-// Función para renderizar autos en el sitio principal
+// Variables globales para paginación
+let allVehicles = [];
+let currentPage = 1;
+const VEHICLES_PER_PAGE = 6;
+
+// Función para renderizar autos en el sitio principal con paginación
 async function renderVehicles() {
   const vehiclesGrid = document.getElementById('vehiclesGrid');
   if (!vehiclesGrid) return;
 
   try {
-    const vehicles = await loadVehiclesFromSupabase();
+    // Cargar todos los vehículos solo la primera vez
+    if (allVehicles.length === 0) {
+      allVehicles = await loadVehiclesFromSupabase();
+    }
 
-    if (!vehicles || vehicles.length === 0) {
+    if (!allVehicles || allVehicles.length === 0) {
       vehiclesGrid.innerHTML = `
         <div style="text-align: center; grid-column: 1/-1; padding: 2rem;">
           <i class="fas fa-car" style="font-size: 3rem; color: #9ca3af; margin-bottom: 1rem;"></i>
@@ -288,7 +296,13 @@ async function renderVehicles() {
       return;
     }
 
-    vehiclesGrid.innerHTML = vehicles
+    // Calcular qué vehículos mostrar en la página actual
+    const startIndex = 0;
+    const endIndex = currentPage * VEHICLES_PER_PAGE;
+    const vehiclesToShow = allVehicles.slice(startIndex, endIndex);
+
+    // Renderizar solo los vehículos de la página actual
+    vehiclesGrid.innerHTML = vehiclesToShow
       .map(vehicle => {
         const hasImages = vehicle.imagenes && vehicle.imagenes.length > 0;
         const isOnOffer = vehicle.en_oferta && vehicle.precio_oferta;
@@ -323,6 +337,30 @@ async function renderVehicles() {
         `;
       })
       .join('');
+
+    // Agregar botón "Ver más" si hay más vehículos
+    const totalVehicles = allVehicles.length;
+    const vehiclesShown = vehiclesToShow.length;
+    
+    if (vehiclesShown < totalVehicles) {
+      const loadMoreButton = document.createElement('div');
+      loadMoreButton.className = 'load-more-container';
+      loadMoreButton.style.cssText = `
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 1rem;
+      `;
+      
+      loadMoreButton.innerHTML = `
+        <button class="btn btn-primary load-more-btn" onclick="loadMoreVehicles()">
+          <i class="fas fa-plus"></i>
+          Ver más vehículos (${totalVehicles - vehiclesShown} restantes)
+        </button>
+      `;
+      
+      vehiclesGrid.appendChild(loadMoreButton);
+    }
     
   } catch (error) {
     console.error('Error al renderizar vehículos:', error);
@@ -334,6 +372,23 @@ async function renderVehicles() {
       </div>
     `;
   }
+}
+
+// Función para cargar más vehículos
+function loadMoreVehicles() {
+  const loadMoreBtn = document.querySelector('.load-more-btn');
+  
+  // Agregar estado de carga al botón
+  if (loadMoreBtn) {
+    loadMoreBtn.classList.add('loading');
+    loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cargando...';
+  }
+  
+  // Simular un pequeño delay para la animación
+  setTimeout(() => {
+    currentPage++;
+    renderVehicles();
+  }, 500);
 }
 
 
