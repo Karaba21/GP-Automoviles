@@ -1973,8 +1973,13 @@ html {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 4px;
-    transform: rotate(-15deg);
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    transform: rotate(-25deg);
+    text-shadow: 
+        2px 2px 0 #ffffff,
+        -2px -2px 0 #ffffff,
+        2px -2px 0 #ffffff,
+        -2px 2px 0 #ffffff,
+        3px 3px 6px rgba(0, 0, 0, 0.8);
     animation: vendidoPulse 2s ease-in-out infinite;
     background: none;
     border: none;
@@ -1984,12 +1989,22 @@ html {
 
 @keyframes vendidoPulse {
     0%, 100% { 
-        transform: rotate(-15deg) scale(1);
-        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        transform: rotate(-25deg) scale(1);
+        text-shadow: 
+            2px 2px 0 #ffffff,
+            -2px -2px 0 #ffffff,
+            2px -2px 0 #ffffff,
+            -2px 2px 0 #ffffff,
+            3px 3px 6px rgba(0, 0, 0, 0.8);
     }
     50% { 
-        transform: rotate(-15deg) scale(1.05);
-        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9);
+        transform: rotate(-25deg) scale(1.05);
+        text-shadow: 
+            2px 2px 0 #ffffff,
+            -2px -2px 0 #ffffff,
+            2px -2px 0 #ffffff,
+            -2px 2px 0 #ffffff,
+            4px 4px 8px rgba(0, 0, 0, 0.9);
     }
 }
 
@@ -1998,18 +2013,33 @@ html {
     .vendido-text {
         font-size: 2.2rem;
         letter-spacing: 3px;
-        transform: rotate(-12deg);
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        transform: rotate(-20deg);
+        text-shadow: 
+            1px 1px 0 #ffffff,
+            -1px -1px 0 #ffffff,
+            1px -1px 0 #ffffff,
+            -1px 1px 0 #ffffff,
+            2px 2px 4px rgba(0, 0, 0, 0.8);
     }
     
     @keyframes vendidoPulse {
         0%, 100% { 
-            transform: rotate(-12deg) scale(1);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            transform: rotate(-20deg) scale(1);
+            text-shadow: 
+                1px 1px 0 #ffffff,
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         50% { 
-            transform: rotate(-12deg) scale(1.05);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+            transform: rotate(-20deg) scale(1.05);
+            text-shadow: 
+                1px 1px 0 #ffffff,
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                3px 3px 6px rgba(0, 0, 0, 0.9);
         }
     }
 }
@@ -2018,18 +2048,33 @@ html {
     .vendido-text {
         font-size: 1.8rem;
         letter-spacing: 2px;
-        transform: rotate(-10deg);
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        transform: rotate(-18deg);
+        text-shadow: 
+            1px 1px 0 #ffffff,
+            -1px -1px 0 #ffffff,
+            1px -1px 0 #ffffff,
+            -1px 1px 0 #ffffff,
+            2px 2px 4px rgba(0, 0, 0, 0.8);
     }
     
     @keyframes vendidoPulse {
         0%, 100% { 
-            transform: rotate(-10deg) scale(1);
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            transform: rotate(-18deg) scale(1);
+            text-shadow: 
+                1px 1px 0 #ffffff,
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         50% { 
-            transform: rotate(-10deg) scale(1.05);
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+            transform: rotate(-18deg) scale(1.05);
+            text-shadow: 
+                1px 1px 0 #ffffff,
+                -1px -1px 0 #ffffff,
+                1px -1px 0 #ffffff,
+                -1px 1px 0 #ffffff,
+                3px 3px 6px rgba(0, 0, 0, 0.9);
         }
     }
 }
