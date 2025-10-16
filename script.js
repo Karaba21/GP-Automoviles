@@ -310,11 +310,16 @@ async function renderVehicles() {
         return `
           <div class="vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''}">
             ${isOnOffer ? '<div class="offer-badge">OFERTA</div>' : ''}
-            <div class="vehicle-image">
+            <div class="vehicle-image" style="position: relative;">
               ${hasImages 
                 ? `<img src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`
                 : `<i class="fas fa-car" style="font-size: 3rem; color: #9ca3af;"></i>`
               }
+              ${vehicle.vendido ? `
+                <div class="vendido-overlay">
+                  <div class="vendido-text">VENDIDO</div>
+                </div>
+              ` : ''}
             </div>
             <div class="vehicle-info">
               <h3>${vehicle.marca} ${vehicle.modelo}</h3>
@@ -438,6 +443,14 @@ window.changeModalImage = function(vehicleId, direction) {
   // Actualizar contador
   currentSpan.textContent = newIndex + 1;
   
+  // Actualizar overlay VENDIDO si existe
+  const vendidoOverlay = modal.querySelector('.vendido-overlay');
+  if (vendidoOverlay) {
+    // El overlay ya existe, no necesitamos hacer nada más
+    // Solo asegurarnos de que esté visible
+    vendidoOverlay.style.display = 'flex';
+  }
+  
   // Actualizar thumbnails
   thumbnails.forEach((thumb, index) => {
     if (index === newIndex) {
@@ -483,6 +496,14 @@ window.setModalImage = function(vehicleId, index) {
   
   // Actualizar contador
   currentSpan.textContent = index + 1;
+  
+  // Actualizar overlay VENDIDO si existe
+  const vendidoOverlay = modal.querySelector('.vendido-overlay');
+  if (vendidoOverlay) {
+    // El overlay ya existe, no necesitamos hacer nada más
+    // Solo asegurarnos de que esté visible
+    vendidoOverlay.style.display = 'flex';
+  }
   
   // Actualizar thumbnails
   thumbnails.forEach((thumb, i) => {
@@ -612,6 +633,11 @@ async function showVehicleDetails(vehicleId) {
                            border-radius: 12px;
                            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
                          ">
+                    ${vehicle.vendido ? `
+                      <div class="vendido-overlay">
+                        <div class="vendido-text">VENDIDO</div>
+                      </div>
+                    ` : ''}
                     ${vehicle.imagenes.length > 1 ? `
                       <button class="modal-prev-btn" data-vehicle-id="${vehicle.id}" data-direction="-1"
                               style="
@@ -929,6 +955,11 @@ async function showVehicleDetails(vehicleId) {
                       <div class="modal-main-image" style="width: 100%; height: 450px; position: relative; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
                         <img id="modal-main-img" src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" 
                              style="width: 100%; height: 100%; object-fit: contain;">
+                        ${vehicle.vendido ? `
+                          <div class="vendido-overlay">
+                            <div class="vendido-text">VENDIDO</div>
+                          </div>
+                        ` : ''}
                         ${vehicle.imagenes.length > 1 ? `
                           <button class="modal-prev-btn" data-vehicle-id="${vehicle.id}" data-direction="-1"
                                   style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); 
