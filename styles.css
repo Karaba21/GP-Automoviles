@@ -1387,90 +1387,128 @@ html {
     background: var(--primary-dark);
 }
 
-/* Modal responsive styles */
+/* Modal responsive styles - Solo para desktop modal */
 @media (max-width: 1300px) {
-    .modal-content {
+    .desktop-modal {
         width: 95vw !important;
         height: 80vh !important;
     }
 }
 
+/* Estilos específicos para el modal móvil */
+.mobile-modal {
+    /* Los estilos del modal móvil están inline en el JavaScript */
+}
+
+/* Estilos específicos para el modal desktop */
+.desktop-modal {
+    /* Los estilos del modal desktop están inline en el JavaScript */
+}
+
+/* Estilos adicionales para la sección de información del modal */
+.modal-info-section {
+    position: relative;
+}
+
+/* Mejoras para el precio en móvil */
 @media (max-width: 768px) {
-    .modal-content {
-        width: 95vw !important;
-        height: 85vh !important;
-        margin: 10px !important;
+    .modal-info-section > div:first-child {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        border: 1px solid #e2e8f0;
     }
     
-    .modal-content > div {
-        padding: 1rem !important;
+    /* Estilo especial para ofertas */
+    .modal-info-section > div:first-child > div:first-child {
+        background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #fecaca;
+        margin-bottom: 0.5rem;
     }
     
-    .modal-content > div > div {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem !important;
+    .modal-info-section > div:first-child > div:first-child > div:first-child {
+        color: #6b7280 !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.3rem !important;
     }
     
-    .modal-main-image {
-        height: 300px !important;
-    }
-    
-    .modal-thumbnails-container {
-        max-height: 100px !important;
-    }
-    
-    .modal-thumbnail {
-        width: 50px !important;
-        height: 50px !important;
-    }
-    
-    .modal-content h2 {
+    .modal-info-section > div:first-child > div:first-child > div:nth-child(2) {
+        color: #dc2626 !important;
         font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
-    .modal-content p {
-        font-size: 1.3rem !important;
+    .modal-info-section > div:first-child > div:first-child > div:last-child {
+        background: linear-gradient(135deg, #dc2626, #b91c1c) !important;
+        color: white !important;
+        padding: 0.5rem 1rem !important;
+        border-radius: 20px !important;
+        font-size: 0.85rem !important;
+        font-weight: 700 !important;
+        display: inline-block !important;
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3) !important;
     }
     
-    .modal-content > div > div > div:last-child > div:first-child {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .modal-content > div > div > div:last-child > div:last-child {
-        flex-direction: column !important;
+    /* Estilo para precio normal */
+    .modal-info-section > div:first-child > p {
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        color: #1d4ed8 !important;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #bfdbfe;
+        text-align: center;
+        font-weight: 700;
+        margin: 0;
     }
 }
 
-@media (max-width: 480px) {
-    .modal-content {
-        width: 98vw !important;
-        height: 90vh !important;
-        margin: 5px !important;
+/* Mejoras para los detalles del vehículo */
+@media (max-width: 768px) {
+    .modal-info-section > div:nth-child(2) > div {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border-left: 4px solid #0ea5e9 !important;
+        padding: 1rem !important;
+        border-radius: 12px !important;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.1);
     }
     
-    .modal-content > div {
-        padding: 0.75rem !important;
+    .modal-info-section > div:nth-child(2) > div strong {
+        color: #0c4a6e !important;
+        font-size: 0.9rem !important;
+        display: block;
+        margin-bottom: 0.3rem;
     }
     
-    .modal-main-image {
-        height: 250px !important;
-    }
-    
-    .modal-thumbnails-container {
-        max-height: 80px !important;
-    }
-    
-    .modal-thumbnail {
-        width: 45px !important;
-        height: 45px !important;
-    }
-    
-    .modal-content h2 {
-        font-size: 1.3rem !important;
-    }
-    
-    .modal-content p {
+    .modal-info-section > div:nth-child(2) > div span {
+        color: #0369a1 !important;
         font-size: 1.1rem !important;
+        font-weight: 600;
+    }
+}
+
+/* Mejoras para la descripción */
+@media (max-width: 768px) {
+    .modal-info-section > div:nth-child(3) {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .modal-info-section > div:nth-child(3) h3 {
+        color: #1e293b !important;
+        font-weight: 600 !important;
+        border-bottom: 2px solid #e2e8f0;
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .modal-info-section > div:nth-child(3) p {
+        color: #475569 !important;
+        line-height: 1.6 !important;
     }
 }
 
@@ -1636,6 +1674,7 @@ html {
 .modal-thumbnails-container {
     scrollbar-width: thin;
     scrollbar-color: #3b82f6 #f1f5f9;
+    padding: 4px 0;
 }
 
 .modal-thumbnails-container::-webkit-scrollbar {
@@ -1661,6 +1700,7 @@ html {
     gap: 8px;
     margin-bottom: 8px;
     justify-content: flex-start;
+    padding: 0 4px;
 }
 
 .modal-thumbnails-row:last-child {
@@ -1669,11 +1709,85 @@ html {
 
 .modal-thumbnail {
     transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
 }
 
 .modal-thumbnail:hover {
     opacity: 0.8;
     transform: scale(1.05);
+    border-color: #3b82f6 !important;
+}
+
+.modal-thumbnail.active {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Mejoras para navegación táctil en móvil */
+@media (max-width: 768px) {
+    .modal-thumbnails-container {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 8px 0;
+    }
+    
+    .modal-thumbnails-container::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .modal-thumbnails-row {
+        gap: 6px;
+        margin-bottom: 6px;
+        padding: 0 2px;
+        justify-content: center;
+    }
+    
+    .modal-thumbnail {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    
+    .modal-thumbnail:active {
+        transform: scale(0.95);
+    }
+    
+    /* Botones de navegación más accesibles */
+    .modal-prev-btn,
+    .modal-next-btn {
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .modal-prev-btn:active,
+    .modal-next-btn:active {
+        transform: translateY(-50%) scale(0.9);
+    }
+    
+    /* Indicador de swipe para móvil */
+    .modal-thumbnails-container::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 30px;
+        height: 3px;
+        background: #e2e8f0;
+        border-radius: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-thumbnails-row {
+        gap: 4px;
+        margin-bottom: 4px;
+        padding: 0 1px;
+    }
+    
+    .modal-thumbnail {
+        border-radius: 6px;
+    }
 }
 
 /* Estilos para el botón de paginación */
