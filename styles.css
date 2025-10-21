@@ -1953,6 +1953,42 @@ html {
     }
 }
 
+/* Estilos para badge "RESERVADO" - exactamente igual que OFERTA pero amarillo */
+.reservado-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f59e0b;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    animation: reservadoPulse 2s infinite;
+}
+
+@keyframes reservadoPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Estilos para card reservada - marco amarillo como oferta */
+.vehicle-card-reserved {
+    position: relative;
+    border: 2px solid #f59e0b;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+}
+
+.vehicle-card-reserved:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
 /* Estilos para overlay "VENDIDO" */
 .vendido-overlay {
     position: absolute;

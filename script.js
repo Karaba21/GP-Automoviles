@@ -308,8 +308,9 @@ async function renderVehicles() {
         const isOnOffer = vehicle.en_oferta && vehicle.precio_oferta;
         
         return `
-          <div class="vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''}">
+          <div class="vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''} ${vehicle.reservado ? 'vehicle-card-reserved' : ''}">
             ${isOnOffer ? '<div class="offer-badge">OFERTA</div>' : ''}
+            ${vehicle.reservado ? '<div class="reservado-badge">RESERVADO</div>' : ''}
             <div class="vehicle-image" style="position: relative;">
               ${hasImages 
                 ? `<img src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`
@@ -638,6 +639,9 @@ async function showVehicleDetails(vehicleId) {
                         <div class="vendido-text">VENDIDO</div>
                       </div>
                     ` : ''}
+                    ${vehicle.reservado ? `
+                      <div class="reservado-badge" style="position: absolute; top: 15px; right: 15px; z-index: 10;">RESERVADO</div>
+                    ` : ''}
                     ${vehicle.imagenes.length > 1 ? `
                       <button class="modal-prev-btn" data-vehicle-id="${vehicle.id}" data-direction="-1"
                               style="
@@ -959,6 +963,9 @@ async function showVehicleDetails(vehicleId) {
                           <div class="vendido-overlay">
                             <div class="vendido-text">VENDIDO</div>
                           </div>
+                        ` : ''}
+                        ${vehicle.reservado ? `
+                          <div class="reservado-badge" style="position: absolute; top: 10px; right: 10px; z-index: 10;">RESERVADO</div>
                         ` : ''}
                         ${vehicle.imagenes.length > 1 ? `
                           <button class="modal-prev-btn" data-vehicle-id="${vehicle.id}" data-direction="-1"
