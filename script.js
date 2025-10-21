@@ -308,10 +308,10 @@ async function renderVehicles() {
         const isOnOffer = vehicle.en_oferta && vehicle.precio_oferta;
         
         return `
-          <div class="vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''} ${vehicle.reservado ? 'vehicle-card-reserved' : ''}">
+          <div class="vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''} ${vehicle.reservado ? 'vehicle-card-reserved' : ''}" style="display: flex; flex-direction: column; height: 100%;">
             ${isOnOffer ? '<div class="offer-badge">OFERTA</div>' : ''}
             ${vehicle.reservado ? '<div class="reservado-badge">RESERVADO</div>' : ''}
-            <div class="vehicle-image" style="position: relative;">
+            <div class="vehicle-image" style="position: relative; flex-shrink: 0;">
               ${hasImages 
                 ? `<img src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">`
                 : `<i class="fas fa-car" style="font-size: 3rem; color: #9ca3af;"></i>`
@@ -322,22 +322,22 @@ async function renderVehicles() {
                 </div>
               ` : ''}
             </div>
-            <div class="vehicle-info">
-              <h3>${vehicle.marca} ${vehicle.modelo}</h3>
+            <div class="vehicle-info" style="display: flex; flex-direction: column; flex: 1; padding: 1rem;">
+              <h3 style="margin: 0 0 0.5rem 0;">${vehicle.marca} ${vehicle.modelo}</h3>
               ${isOnOffer ? `
-                <div class="price-container">
+                <div class="price-container" style="margin-bottom: 0.5rem;">
                   <p class="vehicle-price-original">$${Number(vehicle.precio).toLocaleString()}</p>
                   <p class="vehicle-price-offer">$${Number(vehicle.precio_oferta).toLocaleString()}</p>
                   <div class="savings">Ahorrás $${(Number(vehicle.precio) - Number(vehicle.precio_oferta)).toLocaleString()}</div>
                 </div>
               ` : `
-                <p class="vehicle-price">$${Number(vehicle.precio).toLocaleString()}</p>
+                <p class="vehicle-price" style="margin: 0 0 0.5rem 0;">$${Number(vehicle.precio).toLocaleString()}</p>
               `}
-              <div class="vehicle-details">
+              <div class="vehicle-details" style="margin-bottom: 0.5rem;">
                 <span><i class="fas fa-calendar"></i> ${vehicle.año || 'N/A'}</span>
               </div>
-              ${vehicle.descripcion ? `<p class="vehicle-description">${vehicle.descripcion.substring(0, 100)}${vehicle.descripcion.length > 100 ? '...' : ''}</p>` : ''}
-              <button class="btn btn-outline" onclick="showVehicleDetails('${vehicle.id}')">Ver Detalles</button>
+              ${vehicle.descripcion ? `<p class="vehicle-description" style="white-space: pre-line; flex: 1; margin: 0 0 1rem 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">${vehicle.descripcion}</p>` : ''}
+              <button class="btn btn-outline" onclick="showVehicleDetails('${vehicle.id}')" style="margin-top: auto;">Ver Detalles</button>
             </div>
           </div>
         `;
@@ -837,6 +837,7 @@ async function showVehicleDetails(vehicleId) {
                   color: #475569; 
                   margin: 0; 
                   font-size: 0.95rem;
+                  white-space: pre-line;
                 ">${vehicle.descripcion}</p>
               </div>
             ` : ''}
@@ -1045,7 +1046,7 @@ async function showVehicleDetails(vehicleId) {
                   <div style="background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0; flex: 1; overflow: hidden; display: flex; flex-direction: column;">
                     <h3 style="margin-bottom: 0.8rem; color: #1f2937; font-size: 1.1rem; flex-shrink: 0;">Descripción</h3>
                     <div style="overflow-y: auto; flex: 1; padding-right: 5px;">
-                      <p style="line-height: 1.5; color: #4b5563; margin: 0; font-size: 0.9rem;">${vehicle.descripcion}</p>
+                      <p style="line-height: 1.5; color: #4b5563; margin: 0; font-size: 0.9rem; white-space: pre-line;">${vehicle.descripcion}</p>
                     </div>
                   </div>
                 ` : ''}
