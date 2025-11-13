@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+# Sitemap
+Sitemap: https://gpautomovilesuy.com/sitemapGP.xml
+
