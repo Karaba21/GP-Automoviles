@@ -1,35 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K5HFNX5R');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-K5HFNX5R');</script>
     <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GP Automóviles - Tu Concesionario de Confianza</title>
-    
+
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://gpautomovilesuy.com/">
     <meta property="og:title" content="GP Automóviles - Tu Concesionario de Confianza">
-    <meta property="og:description" content="¡Hola! Somos GP Automóviles, tu mejor aliado a la hora de elegir tu usado o 0 km. Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se adaptan a vos.">
+    <meta property="og:description"
+        content="¡Hola! Somos GP Automóviles, tu mejor aliado a la hora de elegir tu usado o 0 km. Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se adaptan a vos.">
     <meta property="og:image" content="https://gpautomovilesuy.com/assets/ogimage.jpeg">
     <meta property="og:site_name" content="GP Automóviles">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://gpautomovilesuy.com/">
     <meta name="twitter:title" content="GP Automóviles - Tu Concesionario de Confianza">
-    <meta name="twitter:description" content="¡Hola! Somos GP Automóviles, tu mejor aliado a la hora de elegir tu usado o 0 km. Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se adaptan a vos.">
+    <meta name="twitter:description"
+        content="¡Hola! Somos GP Automóviles, tu mejor aliado a la hora de elegir tu usado o 0 km. Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se adaptan a vos.">
     <meta name="twitter:image" content="https://gpautomovilesuy.com/assets/ogimage.jpeg">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://gpautomovilesuy.com/">
-    
+
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -39,17 +45,17 @@
             opacity: 0.8;
             transform: scale(1.05);
         }
-        
+
         .modal-thumbnail {
             transition: all 0.3s ease;
         }
-
     </style>
 </head>
+
 <body>
     <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5HFNX5R"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K5HFNX5R" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
     <header class="header">
@@ -96,7 +102,8 @@
             <div class="hero-text">
                 <h1>Bienvenido a <span class="highlight">GP Automóviles</span></h1>
                 <p>¡Hola! Somos GP Automóviles, tu mejor aliado a la hora de elegir tu usado o 0 km.
-                    Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se adaptan a vos.
+                    Nos encargamos de buscar la mejor opción según tus necesidades, con planes de financiación que se
+                    adaptan a vos.
                     Además, contamos con gestoría propia para brindarte seguridad y tranquilidad en tu compra.</p>
                 <div class="hero-buttons">
                     <a href="#vehiculos" class="btn btn-primary">Ver Vehículos</a>
@@ -118,7 +125,7 @@
                 <h2>Usados seleccionados</h2>
                 <p>Descubrí nuestra amplia gama de vehículos de calidad</p>
             </div>
-            
+
 
             <div class="vehicles-grid" id="vehiclesGrid">
                 <!-- Los vehículos se cargarán dinámicamente desde Supabase -->
@@ -137,7 +144,7 @@
                 <h2>0km</h2>
                 <p>Tu próximo 0km te está esperando</p>
             </div>
-            
+
             <div class="brands-carousel">
                 <div class="carousel-container">
                     <div class="carousel-track" id="brandsCarousel">
@@ -155,7 +162,7 @@
                             <img src="assets/marcas/hyundailogo.png" alt="Hyundai" class="brand-logo">
                         </div>
                         <div class="carousel-slide">
-                            <img src="assets/marcas/suzukilogo.png" alt="Suzuki" class="brand-logo">
+                            <img src="assets/marcas/suzuki.png" alt="Suzuki" class="brand-logo">
                         </div>
                         <div class="carousel-slide">
                             <img src="assets/marcas/nissanlogo.png" alt="Nissan" class="brand-logo">
@@ -173,12 +180,12 @@
                             <img src="assets/marcas/jmclogo.png" alt="JMC" class="brand-logo">
                         </div>
                         <div class="carousel-slide">
-                            <img src="assets/marcas/geelylogo.jpeg" alt="Geely" class="brand-logo">
+                            <img src="assets/marcas/geelylogo.png" alt="Geely" class="brand-logo">
                         </div>
                         <div class="carousel-slide">
                             <img src="assets/marcas/jaclogo.png" alt="JAC" class="brand-logo">
                         </div>
-                        
+
                         <!-- Segunda serie de logos (duplicados para continuidad) -->
                         <div class="carousel-slide">
                             <img src="assets/marcas/fiatlogo.png" alt="FIAT" class="brand-logo">
@@ -216,7 +223,7 @@
                         <div class="carousel-slide">
                             <img src="assets/marcas/jaclogo.png" alt="JAC" class="brand-logo">
                         </div>
-                        
+
                         <!-- Tercera serie de logos (para completar el ciclo) -->
                         <div class="carousel-slide">
                             <img src="assets/marcas/fiatlogo.png" alt="FIAT" class="brand-logo">
@@ -268,47 +275,50 @@
                 <p>La satisfacción de nuestros clientes es nuestra prioridad</p>
             </div>
 
-                <div class="benefits-services">
-                    <div class="services-grid">
-                        <div class="service-card">
-                            <i class="fas fa-credit-card"></i>
-                            <h4>Financiacion de la casa</h4>
-                            <p>Entregando el 50%. NO IMPORTA CLEARING.</p>
-                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('financiacion-casa')">
-                                Más info
-                            </button>
-                        </div>
-                        <div class="service-card">
-                            <i class="fas fa-credit-card"></i>
-                            <h4>Financiación bancaria</h4>
-                            <p>Llevalo hasta 100% financiado</p>
-                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('financiacion-bancaria-2')">
-                                Más info
-                            </button>
-                        </div>
-                        <div class="service-card">
-                            <i class="fas fa-car-side"></i>
-                            <h4>Gestión de seguros</h4>
-                            <p>Gestionamos tu seguro en el momento</p>
-                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('cambio')">
-                                Más info
-                            </button>
-                        </div>
-                        <div class="service-card">
-                            <i class="fas fa-car-side"></i>
-                            <h4>Tramites de gestoría</h4>
-                            <p>Nos encargamos de todos los tramites de tu vehículo</p>
-                            <button class="btn btn-outline service-info-btn" onclick="openServiceModal('tramites-de-gestion')">
-                                Más info
-                            </button>
-                        </div>
+            <div class="benefits-services">
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>Financiacion de la casa</h4>
+                        <p>Entregando el 50%. NO IMPORTA CLEARING.</p>
+                        <button class="btn btn-outline service-info-btn"
+                            onclick="openServiceModal('financiacion-casa')">
+                            Más info
+                        </button>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-credit-card"></i>
+                        <h4>Financiación bancaria</h4>
+                        <p>Llevalo hasta 100% financiado</p>
+                        <button class="btn btn-outline service-info-btn"
+                            onclick="openServiceModal('financiacion-bancaria-2')">
+                            Más info
+                        </button>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-car-side"></i>
+                        <h4>Gestión de seguros</h4>
+                        <p>Gestionamos tu seguro en el momento</p>
+                        <button class="btn btn-outline service-info-btn" onclick="openServiceModal('cambio')">
+                            Más info
+                        </button>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-car-side"></i>
+                        <h4>Tramites de gestoría</h4>
+                        <p>Nos encargamos de todos los tramites de tu vehículo</p>
+                        <button class="btn btn-outline service-info-btn"
+                            onclick="openServiceModal('tramites-de-gestion')">
+                            Más info
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
-    
+
 
     <!-- Sección Cotización -->
     <section id="cotizacion" class="quote">
@@ -317,7 +327,7 @@
                 <h2>Solicita tu Cotización</h2>
                 <p>Obtene una cotización para tu vehiculo sin compromiso</p>
             </div>
-            
+
             <div class="quote-content">
                 <div class="quote-form-container">
                     <h3>Información del Vehículo</h3>
@@ -325,31 +335,36 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="marca">Marca *</label>
-                                <input type="text" id="marca" name="marca" required placeholder="Ej: Toyota, Ford, Chevrolet...">
+                                <input type="text" id="marca" name="marca" required
+                                    placeholder="Ej: Toyota, Ford, Chevrolet...">
                             </div>
                             <div class="form-group">
                                 <label for="modelo">Modelo *</label>
-                                <input type="text" id="modelo" name="modelo" required placeholder="Ej: Corolla, Focus, Cruze...">
+                                <input type="text" id="modelo" name="modelo" required
+                                    placeholder="Ej: Corolla, Focus, Cruze...">
                             </div>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="anio">Año *</label>
-                                <input type="number" id="anio" name="anio" required placeholder="Ej: 2020" min="1990" max="2025">
+                                <input type="number" id="anio" name="anio" required placeholder="Ej: 2020" min="1990"
+                                    max="2025">
                             </div>
                             <div class="form-group">
                                 <label for="kilometraje">Kilometraje *</label>
-                                <input type="number" id="kilometraje" name="kilometraje" required placeholder="Ej: 50000" min="0">
+                                <input type="number" id="kilometraje" name="kilometraje" required
+                                    placeholder="Ej: 50000" min="0">
                             </div>
                         </div>
-                        
-                        
+
+
                         <div class="form-group">
                             <label for="observaciones">Observaciones Adicionales</label>
-                            <textarea id="observaciones" name="observaciones" placeholder="Cuéntanos más detalles sobre el estado del vehículo, accesorios, etc."></textarea>
+                            <textarea id="observaciones" name="observaciones"
+                                placeholder="Cuéntanos más detalles sobre el estado del vehículo, accesorios, etc."></textarea>
                         </div>
-                        
+
                         <div class="form-actions">
                             <button type="button" class="btn btn-primary" onclick="generateWhatsAppMessage()">
                                 <i class="fab fa-whatsapp"></i>
@@ -358,11 +373,12 @@
                         </div>
                     </form>
                 </div>
-                
+
                 <div class="quote-guide">
                     <h3>Fotos Necesarias para Tasación</h3>
                     <div class="guide-image">
-                        <img src="assets/cotizacion.jpeg" alt="Guía de fotos necesarias para tasación de vehículos" style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow);">
+                        <img src="assets/cotizacion.jpeg" alt="Guía de fotos necesarias para tasación de vehículos"
+                            style="width: 100%; height: auto; border-radius: 12px; box-shadow: var(--shadow);">
                     </div>
                     <div class="guide-text">
                         <p><strong>Para una tasación precisa, necesitamos estas 7 fotos:</strong></p>
@@ -376,12 +392,13 @@
                             <li><strong>7. Motor</strong> - Compartimiento del motor</li>
                         </ul>
                         <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 1rem;">
-                            <i class="fas fa-lightbulb"></i> 
-                            <strong>Tip:</strong> Asegúrate de que las fotos estén bien iluminadas y muestren claramente el estado del vehículo.
+                            <i class="fas fa-lightbulb"></i>
+                            <strong>Tip:</strong> Asegúrate de que las fotos estén bien iluminadas y muestren claramente
+                            el estado del vehículo.
                         </p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </section>
@@ -394,7 +411,7 @@
                 <h2>Lo que dicen nuestros clientes</h2>
                 <p>Reseñas reales de Google</p>
             </div>
-            
+
             <div class="reviews-content">
                 <div class="google-reviews-widget">
                     <div class="google-reviews-header">
@@ -415,7 +432,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="reviews-grid">
                         <div class="review-card">
                             <div class="review-header">
@@ -436,7 +453,8 @@
                                 </div>
                                 <span class="review-date">hace 2 semanas</span>
                             </div>
-                            <p class="review-text">"Excelente la atencion de gonza, resolvio todas mis consultas y total transparencia con los detalles del auto. Super recomendable y volveremos sin duda!!"</p>
+                            <p class="review-text">"Excelente la atencion de gonza, resolvio todas mis consultas y total
+                                transparencia con los detalles del auto. Super recomendable y volveremos sin duda!!"</p>
                         </div>
 
                         <div class="review-card">
@@ -458,8 +476,10 @@
                                 </div>
                                 <span class="review-date">hace 5 meses</span>
                             </div>
-                            <p class="review-text">"Desde la primera comunicación muy atento, demostrando confianza, yo que estoy a distancia hicimos hasta videollamada plateada por él para que viaje seguro.
-                                El auto en excelente estado tal cual lo dijo. Muy recomendable por el estado del auto y su trato!"</p>
+                            <p class="review-text">"Desde la primera comunicación muy atento, demostrando confianza, yo
+                                que estoy a distancia hicimos hasta videollamada plateada por él para que viaje seguro.
+                                El auto en excelente estado tal cual lo dijo. Muy recomendable por el estado del auto y
+                                su trato!"</p>
                         </div>
 
                         <div class="review-card">
@@ -484,7 +504,7 @@
                             <p class="review-text">"Excelente atención, resolviendo inquietudes, dudas y demás.
                                 Sin dudas el próximo 0km será ahí nuevamente 💪🏻…</p>
                         </div>
-                       
+
                         <div class="review-card">
                             <div class="review-header">
                                 <div class="reviewer-info">
@@ -504,13 +524,16 @@
                                 </div>
                                 <span class="review-date">hace 1 mes</span>
                             </div>
-                            <p class="review-text">"Excelente atención, muy buena disposición y transparencia en todo el proceso. Me sentí acompañado desde el primer momento y cumplieron con lo prometido. Los vehículos están en muy buen estado. Recomiendo totalmente esta automotora.
+                            <p class="review-text">"Excelente atención, muy buena disposición y transparencia en todo el
+                                proceso. Me sentí acompañado desde el primer momento y cumplieron con lo prometido. Los
+                                vehículos están en muy buen estado. Recomiendo totalmente esta automotora.
                                 Altamente confiable y con excelente servicio!</p>
                         </div>
                     </div>
-                    
+
                     <div class="google-reviews-footer">
-                        <a href="https://www.google.com/maps/place/Gp+autom%C3%B3viles/@-34.3554933,-56.8564456,15z/data=!4m6!3m5!1s0x95a17700781ec557:0xd119d398e0d4c10c!8m2!3d-34.3554933!4d-56.8564456!16s%2Fg%2F11c0q8q8q8" target="_blank" class="btn btn-primary">
+                        <a href="https://www.google.com/maps/place/Gp+autom%C3%B3viles/@-34.3554933,-56.8564456,15z/data=!4m6!3m5!1s0x95a17700781ec557:0xd119d398e0d4c10c!8m2!3d-34.3554933!4d-56.8564456!16s%2Fg%2F11c0q8q8q8"
+                            target="_blank" class="btn btn-primary">
                             <i class="fab fa-google"></i>
                             Ver todas las reseñas en Google
                         </a>
@@ -528,7 +551,7 @@
                 <h2>Nuestra Ubicación</h2>
                 <p>Visítanos en nuestras instalaciones</p>
             </div>
-            
+
             <div class="location-content">
                 <div class="location-info">
                     <div class="location-details">
@@ -558,15 +581,18 @@
                             <i class="fas fa-clock"></i>
                             <div>
                                 <h4>Horarios</h4>
-                                <p>Lunes - Viernes: 8:00 - 19:00 <br>Sábados: 8:00 - 17:00 PM <br>Domingos: Con previa agenda</p>
+                                <p>Lunes - Viernes: 8:00 - 19:00 <br>Sábados: 8:00 - 17:00 PM <br>Domingos: Con previa
+                                    agenda</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="location-map">
                     <div class="map-placeholder">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105401.69374255819!2d-56.85644558359375!3d-34.35549329999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a17700781ec557%3A0xd119d398e0d4c10c!2sGp%20autom%C3%B3viles!5e0!3m2!1ses-419!2suy!4v1759944602851!5m2!1ses-419!2suy" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105401.69374255819!2d-56.85644558359375!3d-34.35549329999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a17700781ec557%3A0xd119d398e0d4c10c!2sGp%20autom%C3%B3viles!5e0!3m2!1ses-419!2suy!4v1759944602851!5m2!1ses-419!2suy"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -581,8 +607,10 @@
                     <h3>GP Automóviles</h3>
                     <p>Encontranos en nuestras redes sociales</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/share/1CsDq3GYgu/?mibextid=wwXIfr"><i class="fab fa-facebook"></i> </a>
-                        <a href="https://www.instagram.com/gp.automoviles_?igsh=N3YxMnE4Nmx1YjB1"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1CsDq3GYgu/?mibextid=wwXIfr"><i
+                                class="fab fa-facebook"></i> </a>
+                        <a href="https://www.instagram.com/gp.automoviles_?igsh=N3YxMnE4Nmx1YjB1"><i
+                                class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -632,4 +660,5 @@
     <script src="https://unpkg.com/@supabase/supabase-js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
