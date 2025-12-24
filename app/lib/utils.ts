@@ -1,12 +1,5 @@
 'use client'
 
-import { createClient } from '@supabase/supabase-js'
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
-const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
-
-export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-
 export function showNotification(message: string, type: 'info' | 'success' | 'error' = 'info') {
   const notification = document.createElement('div')
   notification.className = `notification notification-${type}`
@@ -107,17 +100,17 @@ export function setModalImage(vehicleId: string, index: number) {
 
 export async function showVehicleDetails(vehicleId: string) {
   try {
-    const { data: vehicle, error } = await supabaseClient
-      .from('Autos')
-      .select('*')
-      .eq('id', vehicleId)
-      .single()
-
-    if (error) {
-      console.error('Error al cargar detalles del vehículo:', error)
+    const response = await fetch(`/api/vehicles/${vehicleId}`)
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}))
+      console.error('Error al cargar detalles del vehículo:', errorData.error || 'Error desconocido')
       showNotification('Error al cargar los detalles del vehículo', 'error')
       return
     }
+
+    const result = await response.json()
+    const vehicle = result.data
 
     if (!vehicle) {
       showNotification('Vehículo no encontrado', 'error')

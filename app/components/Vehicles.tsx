@@ -1,12 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
-
-const SUPABASE_URL = 'https://avnpyazxusstgcdeufcw.supabase.co'
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2bnB5YXp4dXNzdGdjZGV1ZmN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAyOTI5NTQsImV4cCI6MjA3NTg2ODk1NH0.295vriO7O4I2ak5I2XqCysIVQ-KQSRIm4umkb_E_dsA'
-
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 interface Vehicle {
   id: string
@@ -34,17 +28,16 @@ export default function Vehicles() {
 
   const loadVehicles = async () => {
     try {
-      const { data, error } = await supabaseClient
-        .from('Autos')
-        .select('*')
-        .order('id', { ascending: false })
-
-      if (error) {
-        console.error('Error al cargar autos:', error)
+      const response = await fetch('/api/vehicles')
+      
+      if (!response.ok) {
+        console.error('Error al cargar autos')
+        setLoading(false)
         return
       }
 
-      setAllVehicles(data || [])
+      const result = await response.json()
+      setAllVehicles(result.data || [])
       setLoading(false)
     } catch (error) {
       console.error('Error de conexión:', error)
