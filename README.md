@@ -1,119 +1,119 @@
-# GP Automóviles - Sitio Web
+# GP Automóviles - Next.js
 
-Una página web elegante y moderna para la automotora GP Automóviles, diseñada como una single page application con todas las secciones necesarias.
+Sitio web de GP Automóviles convertido a Next.js manteniendo toda la lógica y estética original.
 
-## 🚗 Características
+## 🚀 Inicio Rápido
 
-- **Diseño Responsivo**: Optimizado para dispositivos móviles, tablets y desktop
-- **Navegación Suave**: Scroll suave entre secciones
-- **Integración CRM**: Preparado para cargar vehículos desde un sistema CRM
-- **Animaciones Modernas**: Efectos visuales atractivos y profesionales
-- **SEO Optimizado**: Estructura semántica y meta tags apropiados
+### Instalación
 
-## 📱 Secciones Incluidas
+```bash
+npm install
+```
 
-### 1. **Inicio (Hero)**
-- Presentación atractiva de la empresa
-- Estadísticas destacadas
-- Botones de llamada a la acción
-- Animación flotante del ícono del auto
+### Desarrollo
 
-### 2. **Vehículos**
-- Grid responsivo de vehículos
-- Filtros por categoría (Sedán, SUV, Hatchback, Pickup)
-- Información detallada de cada vehículo
-- Integración preparada para CRM
+```bash
+npm run dev
+```
 
-### 3. **Clientes**
-- Testimonios de clientes satisfechos
-- Servicios disponibles (Mantenimiento, Garantía, Financiación, Cambio)
-- Diseño de tarjetas atractivo
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-### 4. **Ubicación**
-- Información de contacto completa
-- Horarios de atención
-- Espacio preparado para mapa interactivo
-- Datos de contacto destacados
+### Producción
 
-## 🛠️ Tecnologías Utilizadas
+```bash
+npm run build
+npm start
+```
 
-- **HTML5**: Estructura semántica moderna
-- **CSS3**: Estilos avanzados con variables CSS, Grid y Flexbox
-- **JavaScript ES6+**: Funcionalidades interactivas
-- **Font Awesome**: Iconografía profesional
-- **Google Fonts**: Tipografía Inter para mejor legibilidad
-
-## 🎨 Características de Diseño
-
-- **Paleta de Colores**: Azul profesional con acentos dorados
-- **Tipografía**: Inter para una apariencia moderna y legible
-- **Animaciones**: Transiciones suaves y efectos hover
-- **Gradientes**: Efectos visuales atractivos
-- **Sombras**: Profundidad y elegancia en los elementos
-
-## 📁 Estructura de Archivos
+## 📁 Estructura del Proyecto
 
 ```
 GP-Automoviles/
-├── index.html          # Página principal
-├── styles.css          # Estilos CSS
-├── script.js           # Funcionalidades JavaScript
-└── README.md           # Documentación
+├── app/
+│   ├── components/        # Componentes React
+│   │   ├── Header.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Vehicles.tsx
+│   │   ├── CeroKm.tsx
+│   │   ├── Benefits.tsx
+│   │   ├── Quote.tsx
+│   │   ├── Reviews.tsx
+│   │   ├── Location.tsx
+│   │   ├── Footer.tsx
+│   │   └── ServiceModal.tsx
+│   ├── hooks/            # Custom hooks
+│   │   └── useVehicleModal.ts
+│   ├── lib/              # Utilidades
+│   │   └── utils.ts
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx          # Página principal
+│   └── globals.css       # Estilos globales
+├── public/
+│   └── assets/           # Imágenes y recursos estáticos
+├── package.json
+├── next.config.js
+└── tsconfig.json
 ```
 
-## 🚀 Instalación y Uso
+## 🛠️ Tecnologías
 
-1. **Clonar o descargar** los archivos del proyecto
-2. **Abrir** `index.html` en un navegador web
-3. **Personalizar** el contenido según las necesidades de la automotora
+- **Next.js 14** - Framework React
+- **React 18** - Biblioteca UI
+- **TypeScript** - Tipado estático
+- **Supabase** - Base de datos y backend
+- **Font Awesome** - Iconos
+- **Google Fonts** - Tipografía Inter
 
-## 🔧 Personalización
+## ✨ Características
 
-### Cambiar Información de la Empresa
-- Editar el nombre en el header y footer
-- Actualizar datos de contacto en la sección de ubicación
-- Modificar testimonios de clientes
+- ✅ **Misma lógica**: Toda la funcionalidad original preservada
+- ✅ **Misma estética**: Estilos CSS idénticos
+- ✅ **SSR/SSG**: Renderizado del lado del servidor
+- ✅ **SEO Optimizado**: Metadata y Open Graph configurados
+- ✅ **Responsive**: Diseño adaptativo mantenido
+- ✅ **Integración Supabase**: Carga de vehículos desde base de datos
 
-### Integrar con CRM
-- Modificar la función `loadVehiclesFromCRM()` en `script.js`
-- Conectar con la API de tu sistema CRM
-- Personalizar los campos de vehículos según tu base de datos
+## 📝 Notas
 
-### Agregar Mapa Interactivo
-- Obtener una API key de Google Maps
-- Reemplazar el placeholder del mapa con el código de Google Maps
-- Actualizar la función `initMap()` en `script.js`
+- Los estilos CSS se mantienen exactamente iguales en `app/globals.css`
+- La lógica de JavaScript se ha convertido a React hooks y funciones
+- Los modales de vehículos se generan dinámicamente como en la versión original
+- Las imágenes se cargan desde Supabase y se muestran con Next.js Image
 
-## 📱 Responsive Design
+## 🔧 Configuración
 
-El sitio está optimizado para:
-- **Desktop**: 1200px y superior
-- **Tablet**: 768px - 1199px
-- **Mobile**: 320px - 767px
+### Variables de Entorno
 
-## 🎯 Funcionalidades JavaScript
+No se requieren variables de entorno adicionales. Las credenciales de Supabase están configuradas directamente en el código (puedes moverlas a variables de entorno si lo prefieres).
 
-- **Navegación móvil**: Menú hamburguesa responsivo
-- **Scroll suave**: Navegación entre secciones
-- **Filtros de vehículos**: Categorización dinámica
-- **Animaciones**: Efectos de entrada al hacer scroll
-- **Contadores animados**: Estadísticas con animación
-- **Header dinámico**: Cambio de apariencia al hacer scroll
+### Personalización
 
-## 🔮 Próximas Mejoras
+- **Estilos**: Edita `app/globals.css`
+- **Componentes**: Modifica los archivos en `app/components/`
+- **Lógica**: Ajusta `app/lib/utils.ts` y los hooks en `app/hooks/`
 
-- [ ] Integración completa con CRM
-- [ ] Sistema de formularios de contacto
-- [ ] Galería de imágenes de vehículos
-- [ ] Chat en vivo
-- [ ] Sistema de reservas online
-- [ ] Integración con redes sociales
-- [ ] Optimización SEO avanzada
+## 📱 Secciones
 
-## 📞 Soporte
+1. **Inicio (Hero)** - Presentación de la empresa
+2. **Vehículos** - Grid de vehículos desde Supabase
+3. **0km** - Carrusel de marcas
+4. **Facilidades** - Servicios con modales informativos
+5. **Cotización** - Formulario de cotización por WhatsApp
+6. **Reseñas** - Testimonios de Google
+7. **Ubicación** - Mapa y datos de contacto
+8. **Footer** - Enlaces y redes sociales
 
-Para personalizaciones adicionales o soporte técnico, contacta al desarrollador.
+## 🚀 Despliegue
+
+El proyecto está listo para desplegarse en:
+- **Vercel** (recomendado para Next.js)
+- **Netlify**
+- **Cualquier plataforma que soporte Node.js**
+
+## 📄 Licencia
+
+Todos los derechos reservados - GP Automóviles
 
 ---
 
-**GP Automóviles** - Tu concesionario de confianza 🚗
+**Desarrollado con ❤️ para GP Automóviles**
