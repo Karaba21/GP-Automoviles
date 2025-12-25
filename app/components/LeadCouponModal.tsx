@@ -268,7 +268,7 @@ export default function LeadCouponModal() {
               ¡Obtén tu cupón de descuento!
             </h2>
             <p>
-              Completa el formulario y recibe un cupón especial para tu próxima compra.
+              Completa el formulario y recibe un cupón especial para la próxima compra de tu coche.
             </p>
           </div>
         )}
@@ -396,7 +396,7 @@ export default function LeadCouponModal() {
               )}
 
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                ¡Aquí tienes tu cupón!
+                ¡Aquí tienes tu cupón válido para el sorteo de un tanque de combustible lleno!
               </h3>
 
               <div className="lead-coupon-display">
