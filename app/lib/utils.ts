@@ -63,10 +63,10 @@ export function changeModalImage(vehicleId: string, direction: number) {
   thumbnails.forEach((thumb, index) => {
     if (index === newIndex) {
       thumb.classList.add('active')
-      ;(thumb as HTMLElement).style.border = '2px solid #3b82f6'
+        ; (thumb as HTMLElement).style.border = '2px solid #3b82f6'
     } else {
       thumb.classList.remove('active')
-      ;(thumb as HTMLElement).style.border = '2px solid transparent'
+        ; (thumb as HTMLElement).style.border = '2px solid transparent'
     }
   })
 }
@@ -90,18 +90,18 @@ export function setModalImage(vehicleId: string, index: number) {
   thumbnails.forEach((thumb, i) => {
     if (i === index) {
       thumb.classList.add('active')
-      ;(thumb as HTMLElement).style.border = '2px solid #3b82f6'
+        ; (thumb as HTMLElement).style.border = '2px solid #3b82f6'
     } else {
       thumb.classList.remove('active')
-      ;(thumb as HTMLElement).style.border = '2px solid transparent'
+        ; (thumb as HTMLElement).style.border = '2px solid transparent'
     }
   })
 }
 
 export async function showVehicleDetails(vehicleId: string) {
   try {
-    const response = await fetch(`/api/vehicles/${vehicleId}`)
-    
+    const response = await fetch(`/api/vehicles/${vehicleId}`, { cache: 'no-store' })
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}))
       console.error('Error al cargar detalles del vehículo:', errorData.error || 'Error desconocido')
@@ -186,8 +186,8 @@ export async function showVehicleDetails(vehicleId: string) {
             border-radius: 20px 20px 0 0;
             overflow: hidden;
           ">
-            ${vehicle.imagenes && vehicle.imagenes.length > 0 
-              ? `
+            ${vehicle.imagenes && vehicle.imagenes.length > 0
+          ? `
                 <div class="modal-image-gallery" style="position: relative; height: 100%; display: flex; flex-direction: column;">
                   <div class="modal-main-image" style="
                     width: 100%; 
@@ -276,7 +276,7 @@ export async function showVehicleDetails(vehicleId: string) {
                   </div>
                 </div>
               `
-              : `<div style="
+          : `<div style="
                    width: 100%; 
                    height: 100%; 
                    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%); 
@@ -289,7 +289,7 @@ export async function showVehicleDetails(vehicleId: string) {
                    <i class="fas fa-car" style="font-size: 4rem; margin-bottom: 1rem;"></i>
                    <p style="font-size: 1.1rem; font-weight: 500;">Sin imágenes disponibles</p>
                  </div>`
-            }
+        }
           </div>
           
           <div class="modal-info-section" style="
@@ -519,8 +519,8 @@ export async function showVehicleDetails(vehicleId: string) {
           <div style="padding: 2rem; height: 100%; display: flex; flex-direction: column;">
             <div class="modal-layout" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; flex: 1; min-height: 0;">
               <div class="modal-images-section" style="display: flex; flex-direction: column; height: 100%;">
-                ${vehicle.imagenes && vehicle.imagenes.length > 0 
-                  ? `
+                ${vehicle.imagenes && vehicle.imagenes.length > 0
+          ? `
                     <div class="modal-image-gallery" style="position: relative; flex: 1; display: flex; flex-direction: column;">
                       <div class="modal-main-image" style="width: 100%; height: 450px; position: relative; border-radius: 8px; overflow: hidden; flex-shrink: 0;">
                         <img id="modal-main-img" src="${vehicle.imagenes[0]}" alt="${vehicle.marca} ${vehicle.modelo}" 
@@ -559,8 +559,8 @@ export async function showVehicleDetails(vehicleId: string) {
                           ${thumbnailRows.map((row: string[], rowIndex: number) => `
                             <div class="modal-thumbnails-row" style="display: flex; gap: 8px; margin-bottom: 8px; justify-content: flex-start;">
                               ${row.map((img: string, index: number) => {
-                                const globalIndex = rowIndex * 8 + index
-                                return `
+            const globalIndex = rowIndex * 8 + index
+            return `
                                   <img src="${img}" alt="Thumbnail ${globalIndex + 1}" 
                                        class="modal-thumbnail ${globalIndex === 0 ? 'active' : ''}"
                                        data-vehicle-id="${vehicle.id}" data-image-index="${globalIndex}"
@@ -568,15 +568,15 @@ export async function showVehicleDetails(vehicleId: string) {
                                               cursor: pointer; border: 2px solid ${globalIndex === 0 ? '#3b82f6' : 'transparent'}; 
                                               flex-shrink: 0;">
                                 `
-                              }).join('')}
+          }).join('')}
                             </div>
                           `).join('')}
                         </div>
                       ` : ''}
                     </div>
                   `
-                  : `<div style="width: 100%; height: 350px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
-                }
+          : `<div style="width: 100%; height: 350px; background: #f3f4f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="fas fa-car" style="font-size: 4rem; color: #9ca3af;"></i></div>`
+        }
               </div>
               
               <div class="modal-info-section" style="display: flex; flex-direction: column; gap: 1rem; height: 100%; overflow: hidden;">
@@ -662,8 +662,8 @@ export async function showVehicleDetails(vehicleId: string) {
 
     document.body.appendChild(modal)
 
-    // Guardar las imágenes del vehículo
-    ;(window as any)[`modalImages_${vehicle.id}`] = vehicle.imagenes
+      // Guardar las imágenes del vehículo
+      ; (window as any)[`modalImages_${vehicle.id}`] = vehicle.imagenes
 
     // Event listeners
     const prevBtn = modal.querySelector('.modal-prev-btn')

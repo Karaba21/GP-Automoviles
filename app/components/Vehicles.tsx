@@ -28,8 +28,8 @@ export default function Vehicles() {
 
   const loadVehicles = async () => {
     try {
-      const response = await fetch('/api/vehicles')
-      
+      const response = await fetch('/api/vehicles', { cache: 'no-store' })
+
       if (!response.ok) {
         console.error('Error al cargar autos')
         setLoading(false)
