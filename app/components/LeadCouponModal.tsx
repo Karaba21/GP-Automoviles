@@ -265,7 +265,7 @@ export default function LeadCouponModal() {
               <i className="fas fa-times text-lg"></i>
             </button>
             <h2 id="modal-title">
-              ¡Obtén tu cupón de descuento!
+              ¡Obtén tu cupón para el sorteo del tanque de nafta!
             </h2>
             <p>
               Completa el formulario y recibe un cupón especial para la próxima compra de tu coche.

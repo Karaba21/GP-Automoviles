@@ -4,6 +4,9 @@ import { NextResponse } from 'next/server'
 const SUPABASE_URL = process.env.SUPABASE_URL || ''
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || ''
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 export async function GET() {
@@ -21,7 +24,14 @@ export async function GET() {
       )
     }
 
-    return NextResponse.json({ data: data || [] })
+    return NextResponse.json(
+      { data: data || [] },
+      {
+        headers: {
+          'Cache-Control': 'no-store, max-age=0',
+        },
+      }
+    )
   } catch (error) {
     console.error('Error de conexión:', error)
     return NextResponse.json(
