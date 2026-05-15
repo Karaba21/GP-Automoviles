@@ -76,6 +76,7 @@ export default function Quote() {
                     id="marca"
                     name="marca"
                     required
+                    autoComplete="off"
                     placeholder="Ej: Toyota, Ford, Chevrolet..."
                     value={formData.marca}
                     onChange={(e) => setFormData({ ...formData, marca: e.target.value })}
@@ -88,6 +89,7 @@ export default function Quote() {
                     id="modelo"
                     name="modelo"
                     required
+                    autoComplete="off"
                     placeholder="Ej: Corolla, Focus, Cruze..."
                     value={formData.modelo}
                     onChange={(e) => setFormData({ ...formData, modelo: e.target.value })}
@@ -103,6 +105,7 @@ export default function Quote() {
                     id="anio"
                     name="anio"
                     required
+                    autoComplete="off"
                     placeholder="Ej: 2020"
                     min="1990"
                     max="2025"
@@ -117,6 +120,7 @@ export default function Quote() {
                     id="kilometraje"
                     name="kilometraje"
                     required
+                    autoComplete="off"
                     placeholder="Ej: 50000"
                     min="0"
                     value={formData.kilometraje}

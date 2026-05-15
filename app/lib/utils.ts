@@ -661,6 +661,7 @@ export async function showVehicleDetails(vehicleId: string) {
     }
 
     document.body.appendChild(modal)
+    document.body.style.overflow = 'hidden'
 
     // Guardar las imágenes del vehículo
     ;(window as any)[`modalImages_${vehicle.id}`] = vehicle.imagenes
@@ -699,6 +700,7 @@ export async function showVehicleDetails(vehicleId: string) {
     const closeModal = () => {
       if (document.body.contains(modal)) {
         document.body.removeChild(modal)
+        document.body.style.overflow = ''
       }
     }
 

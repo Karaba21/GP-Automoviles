@@ -7,11 +7,11 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || ''
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  _request: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = params
+    const { id } = await params
 
     const { data: vehicle, error } = await supabaseClient
       .from('Autos')

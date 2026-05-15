@@ -284,6 +284,7 @@ export default function LeadCouponModal() {
                 <input
                   type="text"
                   id="full_name"
+                  autoComplete="name"
                   value={formData.full_name}
                   onChange={(e) =>
                     setFormData({ ...formData, full_name: e.target.value })
@@ -304,6 +305,7 @@ export default function LeadCouponModal() {
                 <input
                   type="email"
                   id="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -324,6 +326,7 @@ export default function LeadCouponModal() {
                 <input
                   type="tel"
                   id="phone"
+                  autoComplete="tel"
                   value={formData.phone}
                   onChange={(e) =>
                     setFormData({ ...formData, phone: e.target.value })

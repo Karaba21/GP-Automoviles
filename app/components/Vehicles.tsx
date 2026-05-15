@@ -114,7 +114,8 @@ export default function Vehicles() {
               <div
                 key={vehicle.id}
                 className={`vehicle-card ${isOnOffer ? 'vehicle-card-offer' : ''} ${vehicle.reservado ? 'vehicle-card-reserved' : ''}`}
-                style={{ display: 'flex', flexDirection: 'column', height: '100%' }}
+                style={{ display: 'flex', flexDirection: 'column', height: '100%', cursor: 'pointer' }}
+                onClick={() => showVehicleDetails(vehicle.id)}
               >
                 {isOnOffer && <div className="offer-badge">OFERTA</div>}
                 {vehicle.reservado && <div className="reservado-badge">RESERVADO</div>}
@@ -164,13 +165,12 @@ export default function Vehicles() {
                       {vehicle.descripcion}
                     </p>
                   )}
-                  <button
+                  <div
                     className="btn btn-outline"
-                    onClick={() => showVehicleDetails(vehicle.id)}
-                    style={{ marginTop: 'auto' }}
+                    style={{ marginTop: 'auto', textAlign: 'center' }}
                   >
                     Ver Detalles
-                  </button>
+                  </div>
                 </div>
               </div>
             )
