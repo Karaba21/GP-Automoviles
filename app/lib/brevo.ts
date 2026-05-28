@@ -1,7 +1,8 @@
 export async function upsertBrevoContact(
     email: string,
     fullName: string,
-    phone: string
+    phone: string,
+    birthday?: string | null
 ) {
     const apiKey = process.env.BREVO_API_KEY;
 
@@ -26,6 +27,7 @@ export async function upsertBrevoContact(
                 attributes: {
                     FIRSTNAME: fullName,
                     PHONE: phone,
+                    ...(birthday ? { DOB: birthday } : {}),
                 },
                 updateEnabled: true, // Para evitar duplicados y actualizar si existe
             }),

@@ -64,7 +64,7 @@ async function sendCouponEmail(email: string, name: string, couponCode: string) 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { full_name, email, phone, consent, source } = body
+    const { full_name, email, phone, birthday, consent, source } = body
 
     // Validación básica
     if (!full_name || !email || !phone) {
@@ -190,6 +190,7 @@ export async function POST(request: NextRequest) {
         .update({
           full_name,
           phone,
+          birthday: birthday || null,
           consent: consent || false,
           source: source || 'homepage_modal'
         })
@@ -207,6 +208,7 @@ export async function POST(request: NextRequest) {
           full_name,
           email: normalizedEmail,
           phone,
+          birthday: birthday || null,
           consent: consent || false,
           source: source || 'homepage_modal'
         })
@@ -275,7 +277,7 @@ export async function POST(request: NextRequest) {
       // Intentar crear/actualizar contacto en Brevo CRM (fire and forget / no-blocking real fail)
       // Lo hacemos await para logging ordenado pero atrapado internamente en la fn si se desea, 
       // pero aquí la fn upsertBrevoContact ya tiene try/catch.
-      await upsertBrevoContact(normalizedEmail, full_name, phone)
+      await upsertBrevoContact(normalizedEmail, full_name, phone, birthday)
 
       if (couponCode) {
         // Enviar email transaccional

@@ -11,6 +11,7 @@ export default function LeadCouponModal() {
     full_name: '',
     email: '',
     phone: '',
+    birthday: '',
     consent: false
   })
   const [couponCode, setCouponCode] = useState('')
@@ -159,6 +160,7 @@ export default function LeadCouponModal() {
           full_name: formData.full_name.trim(),
           email: formData.email.trim(),
           phone: formData.phone.trim(),
+          birthday: formData.birthday || null,
           consent: formData.consent,
           source: 'homepage_modal'
         })
@@ -337,6 +339,23 @@ export default function LeadCouponModal() {
                 {errors.phone && (
                   <p className="lead-error-msg">{errors.phone}</p>
                 )}
+              </div>
+
+              {/* Fecha de cumpleaños */}
+              <div className="lead-form-group">
+                <label htmlFor="birthday">
+                  Fecha de cumpleaños
+                </label>
+                <input
+                  type="date"
+                  id="birthday"
+                  autoComplete="bday"
+                  value={formData.birthday}
+                  onChange={(e) =>
+                    setFormData({ ...formData, birthday: e.target.value })
+                  }
+                  className="lead-form-input"
+                />
               </div>
 
               {/* Consentimiento */}

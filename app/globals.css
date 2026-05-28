@@ -2167,8 +2167,9 @@ html {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    overflow-y: auto;
     z-index: 99999;
     padding: 1rem;
     margin: 0;
@@ -2181,8 +2182,7 @@ html {
     box-shadow: var(--shadow-lg);
     width: 100%;
     max-width: 32rem;
-    max-height: 90vh;
-    overflow-y: auto;
+    margin: auto;
     z-index: 100000;
     animation: modalFadeIn 0.3s ease-out;
 }
