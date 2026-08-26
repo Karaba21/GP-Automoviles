@@ -25,6 +25,7 @@ export default function Location() {
                 <div>
                   <h4>Teléfono</h4>
                   <p>+598 99 493 618</p>
+                  <p>+598 91 553 417</p>
                 </div>
               </div>
               <div className="contact-item">

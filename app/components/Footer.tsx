@@ -28,6 +28,7 @@ export default function Footer() {
           <div className="footer-section">
             <h4>Contacto</h4>
             <p><i className="fas fa-phone"></i> +598 99 493 618</p>
+            <p><i className="fas fa-phone"></i> +598 91 553 417</p>
             <p><i className="fas fa-envelope"></i> gp.automoviless@gmail.com</p>
             <p><i className="fas fa-map-marker-alt"></i> General Fructuoso Rivera 3334, San José de Mayo</p>
           </div>

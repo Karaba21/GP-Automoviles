@@ -1,3 +1,5 @@
+allowBuilds:
+  sharp: false
 overrides:
   next@>=10.0.0 <15.5.10: '>=15.5.10'
   next@>=10.0.0 <15.5.14: '>=15.5.14'
